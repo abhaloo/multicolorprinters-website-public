@@ -111,9 +111,9 @@ export async function POST(request: NextRequest) {
     `
 
     const { error } = await resend.emails.send({
-      from: "Multi Color Printers <quotes@multicolorprinters.co.tz>",
+      from: "Multi Color Printers <quotes@multicolorprinters.com>",
       replyTo: email,
-      to: ["info@multicolorprinters.co.tz"],
+      to: ["info@multicolorprinters.com"],
       subject: `Quote Request: ${service} — ${name}`,
       html,
     })

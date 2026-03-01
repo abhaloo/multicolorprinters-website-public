@@ -3,7 +3,7 @@ export const companyInfo = {
   slogan: "Your Vision, Perfectly Printed",
   phone: "+255 773 194 472",
   whatsapp: "+255 672 592 603",
-  email: "info@multicolorprinters.co.tz",
+  email: "info@multicolorprinters.com",
   address: "Zanzibar, Tanzania",
   social: {
     instagram: "https://www.instagram.com/multicolorprinters",
