@@ -6,7 +6,8 @@
       "Bash(mkdir:*)",
       "Bash(nvm:*)",
       "Bash(node:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(mv:*)"
     ]
   }
 }

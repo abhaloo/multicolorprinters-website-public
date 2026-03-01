@@ -6,7 +6,7 @@ export const companyInfo = {
   email: "info@multicolorprinters.com",
   address: "Zanzibar, Tanzania",
   social: {
-    instagram: "https://www.instagram.com/multicolorprinters",
+    instagram: "https://www.instagram.com/multicolorprintersltd",
     facebook: "https://www.facebook.com/multicolorprinters",
   },
   stats: {
