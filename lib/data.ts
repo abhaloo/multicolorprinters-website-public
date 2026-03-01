@@ -10,8 +10,8 @@ export const companyInfo = {
   },
   stats: {
     yearsExperience: "25+",
-    projectsDelivered: "10,000+",
-    businessesServed: "500+",
+    projectsDelivered: "30,000+",
+    businessesServed: "700+",
     satisfaction: "99%",
   },
 }

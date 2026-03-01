@@ -12,21 +12,8 @@ export const metadata: Metadata = {
   title: 'Multi Color Printers | Commercial Printing Excellence',
   description: 'Premium commercial printing services. Business cards, brochures, banners, packaging & more. Request a free quote today.',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/favicon.gif',
+    apple: '/favicon.gif',
   },
 }
 

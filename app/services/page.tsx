@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { Palette, Printer, Factory, Package } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { CTASection } from "@/components/cta-section"
@@ -17,7 +18,8 @@ const services = [
     description:
       "Our in-house design team brings your ideas to life. From brand identity to marketing materials, we offer professional designing, editing, typesetting, scanning, and image manipulation services to ensure your prints are pixel-perfect.",
     features: ["Brand Identity Design", "Layout & Typesetting", "Image Editing & Retouching", "Scanning & Digitization", "Pre-Press Preparation"],
-    gradient: "from-accent to-secondary",
+    image: "/images/graphic_design.png",
+    alt: "Graphic designer working on a colorful brochure layout with design tools",
   },
   {
     icon: Printer,
@@ -25,7 +27,8 @@ const services = [
     description:
       "Powered by the HP Indigo 5500 digital press, we deliver stunning full-color prints with variable data printing capabilities. Ideal for short runs, personalized marketing, and fast turnaround projects without compromising on quality.",
     features: ["HP Indigo 5500 Technology", "Variable Data Printing", "Short Run Specialists", "Same-Day Turnaround Available", "Pantone Color Matching"],
-    gradient: "from-primary to-[#F25764]",
+    image: "/images/hp_indigo_machine.png",
+    alt: "HP Indigo 5500 digital printing press at Multi Color Printers",
   },
   {
     icon: Factory,
@@ -33,7 +36,8 @@ const services = [
     description:
       "Our Heidelberg SpeedMaster press handles high-volume commercial printing with exceptional consistency. Perfect for large runs of brochures, magazines, books, and marketing collateral with options for varnish coating and special finishes.",
     features: ["Heidelberg SpeedMaster Press", "High-Volume Production", "Varnish & UV Coating", "Spot Color Printing", "Consistent Color Reproduction"],
-    gradient: "from-secondary to-accent",
+    image: "/images/offset_machine.png",
+    alt: "Heidelberg SpeedMaster offset printing press in operation",
   },
   {
     icon: Package,
@@ -41,7 +45,8 @@ const services = [
     description:
       "End-to-end packaging services from structural design to final production. We create eye-catching product packaging, display boxes, and custom containers that protect your products and elevate your brand presence on the shelf.",
     features: ["Custom Box Design", "Product Packaging", "Display & POS Materials", "Die-Cutting & Folding", "Embossing & Foil Stamping"],
-    gradient: "from-[#F25764] to-primary",
+    image: "/images/professional-packaging.png",
+    alt: "Custom product packaging and display boxes produced by Multi Color Printers",
   },
 ]
 
@@ -61,16 +66,19 @@ export default function ServicesPage() {
         >
           <div className="mx-auto max-w-7xl px-6 py-20">
             <div
-              className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-16 ${
-                index % 2 === 1 ? "lg:direction-rtl" : ""
-              }`}
+              className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-16 ${index % 2 === 1 ? "lg:direction-rtl" : ""
+                }`}
             >
-              {/* Image placeholder */}
+              {/* Service Image */}
               <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <div
-                  className={`aspect-[4/3] rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center`}
-                >
-                  <service.icon className="h-24 w-24 text-white/30" />
+                <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
                 </div>
               </div>
 

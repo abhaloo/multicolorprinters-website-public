@@ -90,22 +90,35 @@ export function HeroSection() {
               />
               {/* Overlay card */}
               <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-card/95 p-5 backdrop-blur-sm shadow-xl">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-4">
                   <div className="flex flex-col">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                       Trusted by
                     </span>
-                    <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-foreground">
-                      500+ Businesses
+                    <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
+                      700+
                     </span>
+                    <span className="text-[10px] font-medium text-muted-foreground">Businesses</span>
                   </div>
+                  <div className="h-10 w-px bg-border" />
+                  <div className="flex flex-col items-center">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Experience
+                    </span>
+                    <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
+                      25+
+                    </span>
+                    <span className="text-[10px] font-medium text-muted-foreground">Years</span>
+                  </div>
+                  <div className="h-10 w-px bg-border" />
                   <div className="flex flex-col items-end">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Projects delivered
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      Delivered
                     </span>
-                    <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-primary">
-                      10,000+
+                    <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-primary">
+                      30,000+
                     </span>
+                    <span className="text-[10px] font-medium text-muted-foreground">Orders</span>
                   </div>
                 </div>
               </div>
