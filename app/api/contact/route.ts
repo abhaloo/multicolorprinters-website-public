@@ -3,8 +3,6 @@ export const runtime = "edge"
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // Rate limiting: IP -> array of timestamps
 const submissions = new Map<string, number[]>()
 const RATE_LIMIT = 3
@@ -111,6 +109,8 @@ export async function POST(request: NextRequest) {
         </div>
       </div>
     `
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     const { error } = await resend.emails.send({
       from: "Multi Color Printers <quotes@multicolorprinters.com>",
