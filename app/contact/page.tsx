@@ -63,10 +63,10 @@ export default function ContactPage() {
             {/* Form */}
             <div>
               <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-foreground">
-                Send Us a Message
+                Request a Free Quote
               </h2>
               <p className="mt-2 text-muted-foreground">
-                Fill out the form below and we&apos;ll get back to you within 24 hours.
+                Tell us about your project and we&apos;ll get back to you within 24 hours with a quote.
               </p>
               <div className="mt-6">
                 <ContactForm />
