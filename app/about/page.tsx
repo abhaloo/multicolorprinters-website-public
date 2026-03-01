@@ -1,0 +1,186 @@
+import type { Metadata } from "next"
+import { Target, Heart, Lightbulb, Printer, Factory } from "lucide-react"
+import { PageHero } from "@/components/page-hero"
+import { SectionHeader } from "@/components/section-header"
+import { CTASection } from "@/components/cta-section"
+import { companyInfo } from "@/lib/data"
+
+export const metadata: Metadata = {
+  title: "About Us | Multi Color Printers",
+  description:
+    "Learn about Multi Color Printers — Zanzibar's trusted print partner with 25+ years of experience and industry-leading equipment.",
+}
+
+const stats = [
+  { value: companyInfo.stats.yearsExperience, label: "Years Experience" },
+  { value: companyInfo.stats.projectsDelivered, label: "Projects Delivered" },
+  { value: companyInfo.stats.businessesServed, label: "Businesses Served" },
+  { value: companyInfo.stats.satisfaction, label: "Client Satisfaction" },
+]
+
+const pillars = [
+  {
+    icon: Target,
+    title: "Quality",
+    description: "We never compromise on print quality. Every project is inspected to meet the highest standards before delivery.",
+  },
+  {
+    icon: Heart,
+    title: "Service",
+    description: "Our clients are our partners. We listen, advise, and go the extra mile to ensure complete satisfaction.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Innovation",
+    description: "We invest in the latest printing technology to offer cutting-edge solutions that keep your brand ahead.",
+  },
+]
+
+const equipment = [
+  {
+    icon: Printer,
+    name: "HP Indigo 5500",
+    type: "Digital Press",
+    description:
+      "Industry-leading digital press delivering offset-quality prints with the flexibility of digital. Perfect for variable data, short runs, and specialty substrates.",
+    features: ["7-color printing", "Variable data", "Specialty substrates", "Offset-matching quality"],
+  },
+  {
+    icon: Factory,
+    name: "Heidelberg SpeedMaster",
+    type: "Offset Press",
+    description:
+      "The gold standard in commercial offset printing. Delivers consistent, high-volume output with exceptional color fidelity and finishing options.",
+    features: ["High-volume capacity", "Consistent color", "Varnish coating", "Multiple paper weights"],
+  },
+]
+
+export default function AboutPage() {
+  return (
+    <main>
+      <PageHero
+        title="About Us"
+        subtitle="Zanzibar's Trusted Print Partner"
+      />
+
+      {/* Company Story */}
+      <section className="bg-background py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div>
+              <SectionHeader
+                label="Our story"
+                heading="Built on Quality, Driven by Passion"
+                centered={false}
+              />
+              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Multi Color Printers has been at the heart of Zanzibar&apos;s printing
+                  industry for over 25 years. What started as a small print shop has
+                  grown into the island&apos;s most trusted commercial printing house,
+                  serving some of the region&apos;s leading hotels, government bodies,
+                  and businesses across East Africa.
+                </p>
+                <p>
+                  Our commitment to excellence has driven us to invest in world-class
+                  equipment — from the HP Indigo 5500 digital press to the Heidelberg
+                  SpeedMaster offset press — ensuring that every project we handle
+                  meets the highest international standards.
+                </p>
+              </div>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-border bg-card p-6 text-center"
+                >
+                  <span className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary">
+                    {stat.value}
+                  </span>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission */}
+      <section className="bg-card py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            label="Our mission"
+            heading="What Drives Us Every Day"
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {pillars.map((pillar) => (
+              <div
+                key={pillar.title}
+                className="rounded-xl border border-border bg-background p-8 text-center transition-all hover:border-primary/30 hover:shadow-md"
+              >
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
+                  <pillar.icon className="h-7 w-7 text-secondary" />
+                </div>
+                <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-foreground">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Equipment */}
+      <section className="bg-background py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            label="Our equipment"
+            heading="Industry-Leading Technology"
+          />
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            {equipment.map((item) => (
+              <div
+                key={item.name}
+                className="rounded-2xl border border-border bg-card p-8"
+              >
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
+                  <item.icon className="h-6 w-6 text-secondary" />
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  {item.type}
+                </p>
+                <h3 className="font-[family-name:var(--font-heading)] mt-1 text-xl font-bold text-foreground">
+                  {item.name}
+                </h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
+                <ul className="mt-4 grid grid-cols-2 gap-2">
+                  {item.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-center gap-2 text-sm text-foreground"
+                    >
+                      <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <CTASection />
+    </main>
+  )
+}

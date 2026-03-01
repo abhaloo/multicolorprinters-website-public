@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -43,18 +44,22 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               <Button
+                asChild
                 size="lg"
                 className="bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
               >
-                Request a Free Quote
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <Link href="/contact">
+                  Request a Free Quote
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="border-accent/40 bg-transparent text-secondary-foreground hover:bg-accent/10 font-medium px-8 py-6 text-base"
               >
-                View Our Work
+                <Link href="/portfolio">View Our Work</Link>
               </Button>
             </div>
 
