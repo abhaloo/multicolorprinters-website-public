@@ -2,6 +2,7 @@ export const companyInfo = {
   name: "Multi Color Printers",
   slogan: "Your Vision, Perfectly Printed",
   phone: "+255 773 194 472",
+  whatsapp: "+255 672 592 603",
   email: "info@multicolorprinters.co.tz",
   address: "Zanzibar, Tanzania",
   social: {
