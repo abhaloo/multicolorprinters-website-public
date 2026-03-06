@@ -51,10 +51,15 @@ export function WhyChooseUs() {
             {values.map((value, index) => (
               <AnimateIn key={value.title} variant="fade-up" delay={index * 100}>
                 <div
-                  className="rounded-xl border border-border bg-background p-6 transition-all hover:border-primary/30 hover:shadow-md"
+                  className="rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
                 >
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-secondary/10">
-                    <value.icon className="h-5 w-5 text-secondary" />
+                  <div className="mb-3 flex items-center justify-between">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary/10">
+                      <value.icon className="h-5 w-5 text-secondary" />
+                    </div>
+                    <span className="font-[family-name:var(--font-heading)] text-3xl font-bold text-border select-none">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
                   <h3 className="font-[family-name:var(--font-heading)] text-base font-bold text-foreground">
                     {value.title}

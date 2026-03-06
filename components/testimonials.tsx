@@ -23,6 +23,14 @@ const testimonials = [
   },
 ]
 
+function QuoteIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
+    </svg>
+  )
+}
+
 export function Testimonials() {
   return (
     <section className="bg-card py-20">
@@ -38,24 +46,36 @@ export function Testimonials() {
           {testimonials.map((t, index) => (
             <AnimateIn key={t.name} variant="fade-up" delay={index * 100}>
               <div
-                className="rounded-xl border border-border bg-background p-6 shadow-sm"
+                className="flex h-full flex-col rounded-xl border border-border bg-background p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
               >
-                <div className="mb-4 flex gap-1">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-primary text-primary"
-                    />
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  &ldquo;{t.quote}&rdquo;
+                {/* Decorative quote mark */}
+                <QuoteIcon className="mb-3 h-8 w-8 text-primary/15" />
+
+                {/* Quote text */}
+                <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {t.quote}
                 </p>
-                <div className="mt-4 border-t border-border pt-4">
-                  <p className="font-[family-name:var(--font-heading)] text-sm font-bold text-foreground">
-                    {t.name}
-                  </p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
+
+                {/* Author row */}
+                <div className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+                  {/* Avatar initials */}
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-bold text-white">
+                    {t.name.split(" ").map(n => n[0]).join("")}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-[family-name:var(--font-heading)] text-sm font-bold text-foreground">
+                      {t.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground truncate">{t.role}</p>
+                  </div>
+                  <div className="ml-auto flex shrink-0 gap-0.5">
+                    {Array.from({ length: t.rating }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="h-3.5 w-3.5 fill-primary text-primary"
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </AnimateIn>

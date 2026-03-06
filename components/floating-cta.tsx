@@ -1,7 +1,6 @@
 "use client"
 
 import { usePathname } from "next/navigation"
-import { Phone } from "lucide-react"
 import { companyInfo } from "@/lib/data"
 
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -15,36 +14,21 @@ function WhatsAppIcon({ className }: { className?: string }) {
 export function FloatingCTA() {
   const pathname = usePathname()
 
-  // Hide on /contact — user is already at the conversion destination
   if (pathname === "/contact") return null
 
   const whatsappNumber = companyInfo.whatsapp.replace(/[\s+]/g, "")
-  const phoneNumber = companyInfo.phone.replace(/\s/g, "")
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hello! I'm interested in your printing services.")}`
 
   return (
-    <>
-      {/* WhatsApp — bottom right */}
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-lg shadow-[#25D366]/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#25D366]/40 animate-in fade-in slide-in-from-bottom-4 duration-500 max-sm:p-3.5"
-      >
-        <WhatsAppIcon className="h-6 w-6 shrink-0" />
-        <span className="text-sm font-semibold max-sm:hidden">Chat with us</span>
-      </a>
-
-      {/* Phone — bottom left */}
-      <a
-        href={`tel:${phoneNumber}`}
-        aria-label="Call us now"
-        className="fixed bottom-6 left-6 z-50 flex items-center gap-2.5 rounded-full bg-secondary px-5 py-3.5 text-white shadow-lg shadow-secondary/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-secondary/40 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150 max-sm:p-3.5"
-      >
-        <Phone className="h-6 w-6 shrink-0" />
-        <span className="text-sm font-semibold max-sm:hidden">Call Us</span>
-      </a>
-    </>
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-lg shadow-[#25D366]/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#25D366]/40 animate-in fade-in slide-in-from-bottom-4 duration-500 max-sm:p-3.5"
+    >
+      <WhatsAppIcon className="h-6 w-6 shrink-0" />
+      <span className="text-sm font-semibold max-sm:hidden">Chat with us</span>
+    </a>
   )
 }

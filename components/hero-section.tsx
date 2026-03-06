@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { companyInfo } from "@/lib/data"
+import { CountUp } from "@/components/count-up"
 
 const trustPoints = [
   "Fast Turnaround",
@@ -23,13 +24,13 @@ export function HeroSection() {
           {/* Left Content */}
           <div className="flex flex-col gap-8 py-12 lg:py-20">
             {/* Badge */}
-            <div className="hero-stagger hero-stagger-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-secondary px-4 py-1.5">
+            <div className="hero-stagger hero-stagger-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F25764] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
               <span className="text-xs font-semibold uppercase tracking-wider text-accent">
-                Now accepting orders
+                Zanzibar&apos;s trusted print house since 1999
               </span>
             </div>
 
@@ -84,26 +85,27 @@ export function HeroSection() {
           </div>
 
           {/* Right Image */}
-          <div className="relative hidden lg:block">
-            <div className="relative overflow-hidden rounded-t-2xl">
+          <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl lg:rounded-t-2xl lg:rounded-b-none">
               <Image
                 src="/images/hero-printing.jpg"
-                alt="Commercial printing press producing vibrant full-color prints"
+                alt="Premium printed marketing materials — brochures, business cards, and packaging"
                 width={700}
                 height={600}
                 className="h-full w-full object-cover"
                 priority
               />
               {/* Overlay card */}
-              <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-card/95 p-5 backdrop-blur-sm shadow-xl">
+              <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-card/95 p-5 backdrop-blur-sm shadow-xl hidden lg:block">
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex flex-col">
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                       Trusted by
                     </span>
-                    <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
-                      {companyInfo.stats.businessesServed}
-                    </span>
+                    <CountUp
+                      value={companyInfo.stats.businessesServed}
+                      className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground"
+                    />
                     <span className="text-[10px] font-medium text-muted-foreground">Businesses</span>
                   </div>
                   <div className="h-10 w-px bg-border" />
@@ -111,9 +113,10 @@ export function HeroSection() {
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                       Experience
                     </span>
-                    <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
-                      {companyInfo.stats.yearsExperience}
-                    </span>
+                    <CountUp
+                      value={companyInfo.stats.yearsExperience}
+                      className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground"
+                    />
                     <span className="text-[10px] font-medium text-muted-foreground">Years</span>
                   </div>
                   <div className="h-10 w-px bg-border" />
@@ -121,9 +124,10 @@ export function HeroSection() {
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                       Delivered
                     </span>
-                    <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-primary">
-                      {companyInfo.stats.projectsDelivered}
-                    </span>
+                    <CountUp
+                      value={companyInfo.stats.projectsDelivered}
+                      className="font-[family-name:var(--font-heading)] text-xl font-bold text-primary"
+                    />
                     <span className="text-[10px] font-medium text-muted-foreground">Orders</span>
                   </div>
                 </div>
@@ -135,23 +139,26 @@ export function HeroSection() {
         {/* Mobile-only trust stats */}
         <div className="hero-stagger hero-stagger-4 flex justify-between gap-4 pb-8 lg:hidden">
           <div className="flex flex-col items-center">
-            <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white">
-              {companyInfo.stats.businessesServed}
-            </span>
+            <CountUp
+              value={companyInfo.stats.businessesServed}
+              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white"
+            />
             <span className="text-[10px] font-medium text-accent">Businesses</span>
           </div>
           <div className="h-10 w-px bg-accent/30" />
           <div className="flex flex-col items-center">
-            <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white">
-              {companyInfo.stats.yearsExperience}
-            </span>
+            <CountUp
+              value={companyInfo.stats.yearsExperience}
+              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white"
+            />
             <span className="text-[10px] font-medium text-accent">Years</span>
           </div>
           <div className="h-10 w-px bg-accent/30" />
           <div className="flex flex-col items-center">
-            <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-primary">
-              {companyInfo.stats.projectsDelivered}
-            </span>
+            <CountUp
+              value={companyInfo.stats.projectsDelivered}
+              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-primary"
+            />
             <span className="text-[10px] font-medium text-accent">Orders</span>
           </div>
         </div>

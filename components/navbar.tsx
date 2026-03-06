@@ -53,7 +53,7 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-foreground ${pathname === link.href
+              className={`nav-link-underline text-sm font-medium transition-colors hover:text-foreground ${pathname === link.href
                 ? "text-primary"
                 : "text-muted-foreground"
                 }`}
@@ -87,37 +87,44 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="border-t border-border bg-card px-6 py-6 md:hidden">
-          <div className="flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`text-base font-medium ${pathname === link.href
-                  ? "text-primary"
-                  : "text-foreground"
-                  }`}
-                onClick={() => setMobileOpen(false)}
+      {/* Mobile Menu — animated slide */}
+      <div
+        className={cn(
+          "md:hidden grid transition-[grid-template-rows] duration-300 ease-out",
+          mobileOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-border bg-card px-6 py-6">
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`text-base font-medium ${pathname === link.href
+                    ? "text-primary"
+                    : "text-foreground"
+                    }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <hr className="border-border" />
+              <a
+                href={`tel:${companyInfo.phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-2 text-sm font-medium text-secondary"
               >
-                {link.label}
-              </Link>
-            ))}
-            <hr className="border-border" />
-            <a
-              href={`tel:${companyInfo.phone.replace(/\s/g, "")}`}
-              className="flex items-center gap-2 text-sm font-medium text-secondary"
-            >
-              <Phone className="h-4 w-4" />
-              <span>{companyInfo.phone}</span>
-            </a>
-            <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold">
-              <Link href="/contact">Request Quote</Link>
-            </Button>
+                <Phone className="h-4 w-4" />
+                <span>{companyInfo.phone}</span>
+              </a>
+              <Button asChild className="w-full bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold">
+                <Link href="/contact">Request Quote</Link>
+              </Button>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }

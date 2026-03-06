@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-import { Send, ChevronDown } from "lucide-react"
+import { Send, ChevronDown, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const serviceOptions = [
@@ -42,6 +42,7 @@ const inputClasses =
 export function ContactForm() {
   const [pending, setPending] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const loadedAt = useRef<number>(0)
 
   useEffect(() => {
@@ -99,11 +100,35 @@ export function ContactForm() {
 
       form.reset()
       toast.success("Thank you! We'll get back to you within 24 hours.")
+      setSubmitted(true)
     } catch {
       toast.error("Network error. Please check your connection and try again.")
     } finally {
       setPending(false)
     }
+  }
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center gap-4 py-12 text-center animate-in fade-in zoom-in duration-500">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+          <CheckCircle2 className="h-8 w-8 text-green-600" />
+        </div>
+        <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
+          Quote Request Sent!
+        </h3>
+        <p className="max-w-sm text-sm text-muted-foreground leading-relaxed">
+          Thank you! We&apos;ll review your project details and get back to you within 24 hours.
+        </p>
+        <Button
+          onClick={() => setSubmitted(false)}
+          variant="outline"
+          className="mt-2"
+        >
+          Submit Another Request
+        </Button>
+      </div>
+    )
   }
 
   return (

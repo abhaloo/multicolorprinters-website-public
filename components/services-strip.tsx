@@ -30,7 +30,7 @@ export function ServicesStrip() {
             {services.map((service, index) => (
               <AnimateIn key={service.label} variant="fade-up" delay={index * 80}>
                 <div
-                  className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md"
+                  className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10">
                     <service.icon className="h-6 w-6 text-secondary" />

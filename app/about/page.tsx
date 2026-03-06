@@ -4,6 +4,7 @@ import { PageHero } from "@/components/page-hero"
 import { SectionHeader } from "@/components/section-header"
 import { CTASection } from "@/components/cta-section"
 import { companyInfo } from "@/lib/data"
+import { CountUp } from "@/components/count-up"
 
 export const metadata: Metadata = {
   title: "About Us | Multi Color Printers",
@@ -97,9 +98,10 @@ export default function AboutPage() {
                   key={stat.label}
                   className="rounded-xl border border-border bg-card p-6 text-center"
                 >
-                  <span className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary">
-                    {stat.value}
-                  </span>
+                  <CountUp
+                    value={stat.value}
+                    className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary"
+                  />
                   <p className="mt-1 text-sm text-muted-foreground">
                     {stat.label}
                   </p>
@@ -121,7 +123,7 @@ export default function AboutPage() {
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
-                className="rounded-xl border border-border bg-background p-8 text-center transition-all hover:border-primary/30 hover:shadow-md"
+                className="rounded-xl border border-border bg-background p-8 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
               >
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
                   <pillar.icon className="h-7 w-7 text-secondary" />
