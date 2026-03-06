@@ -24,13 +24,13 @@ export function HeroSection() {
           {/* Left Content */}
           <div className="flex flex-col gap-8 py-12 lg:py-20">
             {/* Badge */}
-            <div className="hero-stagger hero-stagger-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5">
+            <div className="hero-stagger hero-stagger-1 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-[#f5f5f0] backdrop-blur-sm px-4 py-1.5">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F25764] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
               </span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-accent">
-                Zanzibar&apos;s trusted print house since 1999
+              <span className="text-xs font-semibold uppercase tracking-wider text-black">
+                Zanzibar&apos;s trusted print press since 1995
               </span>
             </div>
 
