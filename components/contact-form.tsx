@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-import { Send } from "lucide-react"
+import { Send, ChevronDown } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const serviceOptions = [
   "Graphic Design",
@@ -40,6 +41,7 @@ const inputClasses =
 
 export function ContactForm() {
   const [pending, setPending] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
   const loadedAt = useRef<number>(0)
 
   useEffect(() => {
@@ -176,65 +178,84 @@ export function ContactForm() {
         </div>
       </div>
 
-      {/* Row 3: Product Description + Quantity */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="description" className="mb-1 block text-sm font-medium text-foreground">
-            Product Description
-          </label>
-          <input
-            id="description"
-            name="description"
-            type="text"
-            className={inputClasses}
-            placeholder="e.g., Business cards"
-          />
-        </div>
+      {/* Toggle for optional details */}
+      <button
+        type="button"
+        onClick={() => setShowDetails(!showDetails)}
+        className="flex items-center gap-1.5 text-sm font-medium text-secondary hover:text-foreground transition-colors self-start"
+      >
+        <span>{showDetails ? "Fewer details" : "Add more details (optional)"}</span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 transition-transform duration-200",
+            showDetails && "rotate-180"
+          )}
+        />
+      </button>
 
-        <div>
-          <label htmlFor="quantity" className="mb-1 block text-sm font-medium text-foreground">
-            Quantity
-          </label>
-          <input
-            id="quantity"
-            name="quantity"
-            type="text"
-            className={inputClasses}
-            placeholder="e.g., 500, 1000, 5000"
-          />
-        </div>
-      </div>
+      {showDetails && (
+        <>
+          {/* Row 3: Product Description + Quantity */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="description" className="mb-1 block text-sm font-medium text-foreground">
+                Product Description
+              </label>
+              <input
+                id="description"
+                name="description"
+                type="text"
+                className={inputClasses}
+                placeholder="e.g., Business cards"
+              />
+            </div>
 
-      {/* Row 4: Paper Size + Turnaround */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div>
-          <label htmlFor="paperSize" className="mb-1 block text-sm font-medium text-foreground">
-            Paper Size
-          </label>
-          <select id="paperSize" name="paperSize" className={inputClasses}>
-            <option value="">Select size</option>
-            {paperSizeOptions.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
-        </div>
+            <div>
+              <label htmlFor="quantity" className="mb-1 block text-sm font-medium text-foreground">
+                Quantity
+              </label>
+              <input
+                id="quantity"
+                name="quantity"
+                type="text"
+                className={inputClasses}
+                placeholder="e.g., 500, 1000, 5000"
+              />
+            </div>
+          </div>
 
-        <div>
-          <label htmlFor="turnaround" className="mb-1 block text-sm font-medium text-foreground">
-            Turnaround Time
-          </label>
-          <select id="turnaround" name="turnaround" className={inputClasses}>
-            <option value="">Select timeframe</option>
-            {turnaroundOptions.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+          {/* Row 4: Paper Size + Turnaround */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="paperSize" className="mb-1 block text-sm font-medium text-foreground">
+                Paper Size
+              </label>
+              <select id="paperSize" name="paperSize" className={inputClasses}>
+                <option value="">Select size</option>
+                {paperSizeOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="turnaround" className="mb-1 block text-sm font-medium text-foreground">
+                Turnaround Time
+              </label>
+              <select id="turnaround" name="turnaround" className={inputClasses}>
+                <option value="">Select timeframe</option>
+                {turnaroundOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Message */}
       <div>

@@ -1,5 +1,6 @@
 import { Star } from "lucide-react"
 import { SectionHeader } from "@/components/section-header"
+import { AnimateIn } from "@/components/animate-in"
 
 const testimonials = [
   {
@@ -24,38 +25,40 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-secondary py-20">
+    <section className="bg-card py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader
-          label="Testimonials"
-          heading="What Our Clients Say"
-          light
-        />
+        <AnimateIn>
+          <SectionHeader
+            label="Testimonials"
+            heading="What Our Clients Say"
+          />
+        </AnimateIn>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
-            >
-              <div className="mb-4 flex gap-1">
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="h-4 w-4 fill-primary text-primary"
-                  />
-                ))}
-              </div>
-              <p className="text-sm leading-relaxed text-accent">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div className="mt-4 border-t border-white/10 pt-4">
-                <p className="font-[family-name:var(--font-heading)] text-sm font-bold text-white">
-                  {t.name}
+          {testimonials.map((t, index) => (
+            <AnimateIn key={t.name} variant="fade-up" delay={index * 100}>
+              <div
+                className="rounded-xl border border-border bg-background p-6 shadow-sm"
+              >
+                <div className="mb-4 flex gap-1">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-4 w-4 fill-primary text-primary"
+                    />
+                  ))}
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  &ldquo;{t.quote}&rdquo;
                 </p>
-                <p className="text-xs text-accent">{t.role}</p>
+                <div className="mt-4 border-t border-border pt-4">
+                  <p className="font-[family-name:var(--font-heading)] text-sm font-bold text-foreground">
+                    {t.name}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </div>
               </div>
-            </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

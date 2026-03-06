@@ -1,0 +1,253 @@
+================================================================================
+AI IMAGE GENERATION PROMPTS — Multi Color Printers Website
+================================================================================
+Generated: 2026-03-05
+Tool: Nano Banana 2 (Google Imagen 3) or equivalent
+Notes: All backgrounds MUST match the exact hex color specified so assets
+       composite cleanly into the website. Generate at the specified resolution,
+       then export as the specified format.
+================================================================================
+
+
+--------------------------------------------------------------------------------
+1. HERO PRODUCT SHOWCASE  (homepage hero — highest priority)
+--------------------------------------------------------------------------------
+Resolution: 1400 x 1200 px  (2x for retina, displays at 700x600)
+Format:     WEBP (quality 85) with fallback JPG
+Background: Pure white (#FFFFFF)
+Filename:   hero-printing.webp  (replaces current hero-printing.jpg)
+
+PROMPT:
+Professional product photography of premium printed marketing materials
+arranged in a floating, layered composition on a pure white background.
+Items include: a glossy tri-fold brochure with vibrant tropical imagery
+of turquoise ocean and spice markets, a stack of thick matte business
+cards with a subtle embossed geometric logo, a luxury product packaging
+box with spot UV coating catching the light, and a large format poster
+partially unrolled showing a vivid sunset landscape. All items appear to
+float with soft, realistic drop shadows beneath them. Studio lighting
+from upper left, soft diffused key light with gentle fill from right.
+Shallow depth of field with the business cards in sharp focus in the
+foreground. Color palette features deep navy blue and vibrant red accents
+on the printed materials. Clean, editorial, Apple-product-page aesthetic.
+Shot on medium format digital camera, 85mm equivalent lens, f/4 aperture.
+No readable text on any of the printed materials — all copy should be
+abstract lines or blurred. Photorealistic, commercial product photography.
+
+
+--------------------------------------------------------------------------------
+2. GRAPHIC DESIGN SERVICE IMAGE  (/services page — section 1)
+--------------------------------------------------------------------------------
+Resolution: 1200 x 900 px  (aspect 4:3, 2x retina)
+Format:     WEBP (quality 85)
+Background: Natural/contextual (not isolated)
+Filename:   graphic_design.webp  (replaces current graphic_design.png)
+
+PROMPT:
+Overhead flat-lay photograph of a graphic designer's workspace on a clean
+white desk. A large 27-inch monitor displays a colorful brochure layout
+in progress with tropical Zanzibar imagery — turquoise water, spice
+market colors. Surrounding the monitor: a Pantone color swatch fan spread
+open showing reds and blues, several printed color proofs on premium
+paper stock, a Wacom drawing tablet with stylus, and scattered brand
+identity elements including logo mockups printed on cards, typography
+specimen sheets, and a loupe for detail inspection. A warm coffee in a
+minimal white mug sits in the corner. Warm natural light streams from a
+window on the left, creating soft shadows. Shallow depth of field with
+focus on the Pantone swatches in the foreground, monitor slightly soft.
+Professional editorial style, slightly warm white balance, clean and
+aspirational. No visible brand names or readable text on screen. Shot on
+full frame camera, 35mm lens, f/2.8.
+
+
+--------------------------------------------------------------------------------
+3. DIGITAL PRINTING SERVICE IMAGE  (/services page — section 2)
+--------------------------------------------------------------------------------
+Resolution: 1200 x 900 px  (aspect 4:3, 2x retina)
+Format:     WEBP (quality 85)
+Background: Natural/contextual
+Filename:   hp_indigo_machine.webp  (replaces current hp_indigo_machine.png)
+
+PROMPT:
+Close-up action shot of a professional digital printing press mid-run in
+a clean, modern print facility. Vibrant full-color CMYK prints emerge
+from the machine — freshly printed brochures with rich tropical imagery
+fan out in a neat stack at the output tray. Dramatic side lighting from
+the left illuminates the wet ink surface, creating subtle reflections
+and showing color vibrancy. A slight motion blur on the paper feed
+mechanism suggests speed and precision while the printed output is tack
+sharp. The press body has a modern industrial design with blue-gray
+panels and small LED status indicators glowing. Industrial setting with
+clean concrete floors, well-lit with warm overhead lights. Shallow depth
+of field focused on the freshly printed output. Documentary photography
+style, warm tungsten ambient lighting. Shot on full frame camera, 50mm
+lens, f/2.8.
+
+
+--------------------------------------------------------------------------------
+4. OFFSET PRINTING SERVICE IMAGE  (/services page — section 3)
+--------------------------------------------------------------------------------
+Resolution: 1200 x 900 px  (aspect 4:3, 2x retina)
+Format:     WEBP (quality 85)
+Background: Natural/contextual
+Filename:   offset_machine.webp  (replaces current offset_machine.png)
+
+PROMPT:
+Wide-angle interior shot of a large commercial offset printing press in
+operation. The multi-unit press stretches across the frame, with metal
+rollers and ink cylinders visible, rich cyan and magenta ink coating the
+plates. A technician with dark skin tone inspects a freshly printed
+sheet, holding it up toward a color-checking light box mounted on the
+press console. Stacks of perfectly printed marketing materials sit on
+pallets in the background, slightly out of focus. The press room is
+spacious, clean, and well-organized with industrial overhead pendant
+lights casting even illumination. The printed materials feature navy
+blue and red color accents. Professional industrial photography, 24mm
+wide-angle lens, f/5.6, natural documentary feel with warm color grade.
+Full frame camera.
+
+
+--------------------------------------------------------------------------------
+5. PACKAGING SERVICE IMAGE  (/services page — section 4)
+--------------------------------------------------------------------------------
+Resolution: 1200 x 900 px  (aspect 4:3, 2x retina)
+Format:     WEBP (quality 85)
+Background: Natural/contextual
+Filename:   professional-packaging.webp  (replaces professional-packaging.png)
+
+PROMPT:
+Artful arrangement of luxury product packaging in various stages of
+completion on a dark charcoal slate surface. A finished matte-laminated
+box with gold foil stamping sits prominently in the center foreground.
+Behind it: a flat die-cut sheet before folding showing the box template
+with registration marks, a structural prototype in white uncoated
+cardboard, and two additional finished boxes at different angles showing
+embossing and spot UV details. A craft knife and metal ruler sit to one
+side suggesting hand-crafted precision. Soft studio lighting from above
+and slightly behind creates rim highlights on the box edges, with a
+gentle fill light from front-left. Shallow depth of field with focus on
+the hero finished box. Products feature rich jewel-tone colors — deep
+navy, burgundy, gold foil accents. High-end product photography style
+reminiscent of Apple unboxing aesthetics. Shot on medium format camera,
+100mm macro lens, f/4.
+
+
+--------------------------------------------------------------------------------
+6. ABOUT PAGE — FACILITY / TEAM IMAGE
+--------------------------------------------------------------------------------
+Resolution: 1200 x 900 px  (aspect 4:3, 2x retina)
+Format:     WEBP (quality 85)
+Background: Natural/contextual
+Filename:   about-facility.webp  (new image for about page)
+
+PROMPT:
+Interior photograph of a modern commercial printing facility in East
+Africa. Clean, well-organized workspace with a large format digital
+printer on one wall and metal shelving units holding neatly stacked
+reams of paper and finished print jobs in the background. In the
+foreground, two workers — one male, one female, both East African —
+collaborate at a stainless steel light table, inspecting a color proof
+together with focused, professional expressions. They wear clean work
+attire. Natural light streams through large windows on the left wall,
+complemented by warm industrial pendant lights overhead. The space has
+light neutral walls with subtle pops of red and navy blue in equipment
+panels and wall signage. The overall feeling is professional, warm, and
+human — not sterile or cold. A few potted plants add life to the space.
+Shot on full frame camera, 35mm lens, f/2.8, warm documentary style
+with slightly lifted shadows and natural color grade. Bokeh on the
+background equipment.
+
+
+--------------------------------------------------------------------------------
+7. PAPER TEXTURE OVERLAY  (CSS background texture — subtle)
+--------------------------------------------------------------------------------
+Resolution: 512 x 512 px  (tileable)
+Format:     WEBP (quality 90) — will be used at 3-5% CSS opacity
+Background: Solid off-white (#F2F2F2)
+Filename:   paper-texture.webp  (optional, lowest priority)
+
+PROMPT:
+Extreme macro close-up photograph of high-quality uncoated cotton paper
+stock, 120gsm weight. The image shows the subtle natural fiber texture
+of the paper surface with very slight surface variation and tooth. Color
+is warm off-white (#F2F2F2) with barely visible cream undertones. Flat,
+perfectly even lighting with zero shadows or directional light bias —
+as if shot in a light box. The texture must be subtle enough to work as
+a tiled background at very low opacity. No visible edges, creases,
+watermarks, or imperfections — just clean, uniform paper fiber texture.
+Shot with a macro lens at high magnification. This image must be
+perfectly seamless and tileable in all directions.
+
+
+--------------------------------------------------------------------------------
+8. HP INDIGO 5500 — EQUIPMENT RENDER  (about page equipment section)
+--------------------------------------------------------------------------------
+Resolution: 800 x 600 px  (aspect 4:3)
+Format:     WEBP (quality 85), transparent background if possible, else white
+Background: Pure white (#FFFFFF)
+Filename:   equipment-hp-indigo.webp  (new, for about page)
+
+PROMPT:
+Photorealistic 3D render of an HP Indigo 5500 digital printing press,
+isolated on a pure white background with no floor or environment. The
+machine is shown from a 3/4 front-right angle, slightly above eye level
+(about 15 degrees down). Clean studio lighting with a large soft key
+light from upper-left, gentle fill from right, and subtle rim light on
+the back edge. The machine's signature blue-gray body panels, paper
+feed trays, and small digital control screen are clearly visible. Soft,
+realistic contact shadow directly beneath the machine. Product
+photography style similar to how Apple photographs hardware — clean,
+precise, aspirational. No other objects in the frame. Pure white
+background with no gradients.
+
+
+--------------------------------------------------------------------------------
+9. HEIDELBERG SPEEDMASTER — EQUIPMENT RENDER  (about page equipment section)
+--------------------------------------------------------------------------------
+Resolution: 800 x 600 px  (aspect 4:3)
+Format:     WEBP (quality 85), transparent background if possible, else white
+Background: Pure white (#FFFFFF)
+Filename:   equipment-heidelberg.webp  (new, for about page)
+
+PROMPT:
+Photorealistic 3D render of a Heidelberg SpeedMaster offset printing
+press, isolated on a pure white background with no floor or environment.
+The multi-unit press is shown from a 3/4 front-left angle, slightly
+above eye level, capturing its full impressive length with multiple
+print units, ink fountains, and paper delivery system visible. The
+signature Heidelberg blue color on the frame and safety guards. Clean
+studio lighting with a large soft key light from upper-right, gentle
+fill from left, and subtle rim light highlighting the mechanical details.
+Soft contact shadow beneath the machine. The scale of the machine should
+feel substantial and impressive — convey industrial capability.
+Product photography style, pure white background, no other objects.
+
+
+================================================================================
+NOTES FOR GENERATION
+================================================================================
+
+1. BACKGROUNDS: For isolated product shots (prompts 1, 8, 9), the
+   background MUST be pure solid white/specified color. If the AI tool
+   adds gradients or environment, regenerate or edit in post.
+
+2. TEXT ON PRINTS: Never include readable text on printed materials in
+   the images. Use abstract color blocks, blurred lines, or lorem-ipsum
+   style marks. Readable AI-generated text always has errors.
+
+3. FORMAT PIPELINE:
+   - Generate at specified resolution or higher
+   - Export as WEBP (preferred) with JPG fallback
+   - Place files in: public/images/
+   - Current filenames being replaced: hero-printing.jpg,
+     graphic_design.png, hp_indigo_machine.png, offset_machine.png,
+     professional-packaging.png
+   - New filenames: about-facility.webp, equipment-hp-indigo.webp,
+     equipment-heidelberg.webp, paper-texture.webp
+
+4. COLOR ACCURACY: Red accents = #F21D2F, Navy accents = #2E338C,
+   Background gray = #F2F2F2. These don't need to be pixel-perfect
+   in the generated images, but should be in the right ballpark.
+
+5. PRIORITY ORDER: Generate in this order for maximum impact:
+   1 (hero) > 2-5 (services) > 6 (about) > 8-9 (equipment) > 7 (texture)

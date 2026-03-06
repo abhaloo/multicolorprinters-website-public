@@ -124,3 +124,51 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hero staggered entrance — plays once on load */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-stagger {
+  animation: hero-fade-up 0.8s ease-out both;
+}
+.hero-stagger-1 { animation-delay: 0ms; }
+.hero-stagger-2 { animation-delay: 150ms; }
+.hero-stagger-3 { animation-delay: 300ms; }
+.hero-stagger-4 { animation-delay: 450ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stagger {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* CTA button interactions */
+.btn-cta .cta-arrow-icon {
+  transition: transform 0.3s ease;
+}
+.btn-cta:hover .cta-arrow-icon {
+  transform: translateX(4px);
+}
+.btn-cta:active {
+  transform: scale(0.97);
+  transition: transform 0.15s ease;
+}
+
+/* Form validation feedback — only after user interaction */
+input:not(:placeholder-shown):valid,
+textarea:not(:placeholder-shown):valid {
+  border-color: var(--secondary);
+}
+input:not(:placeholder-shown):invalid,
+textarea:not(:placeholder-shown):invalid {
+  border-color: var(--primary);
+}

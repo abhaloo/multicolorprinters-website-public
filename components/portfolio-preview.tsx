@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionHeader } from "@/components/section-header"
+import { AnimateIn } from "@/components/animate-in"
 
 const projects = [
   {
@@ -25,31 +26,34 @@ export function PortfolioPreview() {
   return (
     <section className="bg-background py-20">
       <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader
-          label="Our work"
-          heading="Recent Projects"
-        />
+        <AnimateIn>
+          <SectionHeader
+            label="Our work"
+            heading="Recent Projects"
+          />
+        </AnimateIn>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="group relative overflow-hidden rounded-xl"
-            >
-              {/* Gradient placeholder */}
+          {projects.map((project, index) => (
+            <AnimateIn key={project.title} variant="scale-in" delay={index * 100}>
               <div
-                className={`aspect-[4/3] bg-gradient-to-br ${project.gradient}`}
-              />
-              {/* Hover overlay */}
-              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 opacity-0 transition-opacity group-hover:opacity-100">
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  {project.category}
-                </span>
-                <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
-                  {project.title}
-                </h3>
+                className="group relative overflow-hidden rounded-xl"
+              >
+                {/* Gradient placeholder */}
+                <div
+                  className={`aspect-[4/3] bg-gradient-to-br ${project.gradient}`}
+                />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 md:opacity-0 transition-opacity md:group-hover:opacity-100">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                    {project.category}
+                  </span>
+                  <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
+                    {project.title}
+                  </h3>
+                </div>
               </div>
-            </div>
+            </AnimateIn>
           ))}
         </div>
 

@@ -1,12 +1,20 @@
 interface PageHeroProps {
   title: string
   subtitle: string
+  accent?: "red" | "purple" | "blue"
 }
 
-export function PageHero({ title, subtitle }: PageHeroProps) {
+const accentGradients = {
+  red: "from-primary/20 via-transparent to-transparent",
+  purple: "from-accent/20 via-transparent to-transparent",
+  blue: "from-secondary/40 via-accent/10 to-transparent",
+}
+
+export function PageHero({ title, subtitle, accent = "red" }: PageHeroProps) {
   return (
     <section className="relative bg-secondary pt-32 pb-20 md:pt-40 md:pb-24">
-      <div className="mx-auto max-w-7xl px-6 text-center">
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accentGradients[accent]}`} aria-hidden="true" />
+      <div className="relative mx-auto max-w-7xl px-6 text-center">
         <p className="text-sm font-semibold uppercase tracking-wider text-accent">
           {subtitle}
         </p>

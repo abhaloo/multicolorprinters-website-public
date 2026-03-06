@@ -56,6 +56,7 @@ export default function ServicesPage() {
       <PageHero
         title="Our Services"
         subtitle="Complete Print Solutions Under One Roof"
+        accent="purple"
       />
 
       {/* Service Sections — Zigzag Layout */}

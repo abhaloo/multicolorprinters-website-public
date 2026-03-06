@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { companyInfo } from "@/lib/data"
 
 const trustPoints = [
   "Fast Turnaround",
@@ -12,12 +13,17 @@ const trustPoints = [
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-secondary pt-24 pb-0 md:pt-32 md:pb-0">
+      {/* Gradient orbs for visual depth on mobile — static to avoid GPU repaints */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden" aria-hidden="true">
+        <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
+        <div className="absolute -left-20 bottom-10 h-60 w-60 rounded-full bg-accent/20 blur-3xl" />
+      </div>
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left Content */}
           <div className="flex flex-col gap-8 py-12 lg:py-20">
             {/* Badge */}
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-secondary px-4 py-1.5">
+            <div className="hero-stagger hero-stagger-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-secondary px-4 py-1.5">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F25764] opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
@@ -28,43 +34,43 @@ export function HeroSection() {
             </div>
 
             {/* Headline */}
-            <div className="flex flex-col gap-4">
+            <div className="hero-stagger hero-stagger-2 flex flex-col gap-4">
               <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight text-secondary-foreground md:text-5xl lg:text-6xl text-balance">
                 Your Vision,{" "}
                 <span className="text-primary">Perfectly</span>{" "}
                 Printed
               </h1>
               <p className="max-w-lg text-lg leading-relaxed text-accent">
-                From business cards to large-format banners, we deliver
+                From business cards to large-format banners to billboards, we deliver
                 exceptional commercial printing with precision color
                 matching and unmatched quality.
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="hero-stagger hero-stagger-3 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Button
                 asChild
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
+                className="btn-cta bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
               >
                 <Link href="/contact">
                   Request a Free Quote
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-5 w-5 cta-arrow-icon" />
                 </Link>
               </Button>
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-accent/40 bg-transparent text-secondary-foreground hover:bg-accent/10 font-medium px-8 py-6 text-base"
+                variant="ghost"
+                className="text-accent hover:text-secondary-foreground hover:bg-accent/10 font-medium px-8 py-6 text-base"
               >
                 <Link href="/portfolio">View Our Work</Link>
               </Button>
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <div className="hero-stagger hero-stagger-4 flex flex-wrap items-center gap-x-6 gap-y-2">
               {trustPoints.map((point) => (
                 <span
                   key={point}
@@ -96,7 +102,7 @@ export function HeroSection() {
                       Trusted by
                     </span>
                     <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
-                      700+
+                      {companyInfo.stats.businessesServed}
                     </span>
                     <span className="text-[10px] font-medium text-muted-foreground">Businesses</span>
                   </div>
@@ -106,7 +112,7 @@ export function HeroSection() {
                       Experience
                     </span>
                     <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
-                      25+
+                      {companyInfo.stats.yearsExperience}
                     </span>
                     <span className="text-[10px] font-medium text-muted-foreground">Years</span>
                   </div>
@@ -116,13 +122,37 @@ export function HeroSection() {
                       Delivered
                     </span>
                     <span className="font-[family-name:var(--font-heading)] text-xl font-bold text-primary">
-                      30,000+
+                      {companyInfo.stats.projectsDelivered}
                     </span>
                     <span className="text-[10px] font-medium text-muted-foreground">Orders</span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Mobile-only trust stats */}
+        <div className="hero-stagger hero-stagger-4 flex justify-between gap-4 pb-8 lg:hidden">
+          <div className="flex flex-col items-center">
+            <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white">
+              {companyInfo.stats.businessesServed}
+            </span>
+            <span className="text-[10px] font-medium text-accent">Businesses</span>
+          </div>
+          <div className="h-10 w-px bg-accent/30" />
+          <div className="flex flex-col items-center">
+            <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white">
+              {companyInfo.stats.yearsExperience}
+            </span>
+            <span className="text-[10px] font-medium text-accent">Years</span>
+          </div>
+          <div className="h-10 w-px bg-accent/30" />
+          <div className="flex flex-col items-center">
+            <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-primary">
+              {companyInfo.stats.projectsDelivered}
+            </span>
+            <span className="text-[10px] font-medium text-accent">Orders</span>
           </div>
         </div>
       </div>

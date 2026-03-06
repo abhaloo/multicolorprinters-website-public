@@ -35,11 +35,10 @@ export function PortfolioGallery() {
           <button
             key={cat}
             onClick={() => setActive(cat)}
-            className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-              active === cat
+            className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${active === cat
                 ? "bg-primary text-white"
                 : "bg-card text-muted-foreground border border-border hover:border-primary/30"
-            }`}
+              }`}
           >
             {cat}
           </button>
@@ -56,7 +55,7 @@ export function PortfolioGallery() {
             <div
               className={`aspect-[4/3] bg-gradient-to-br ${project.gradient} transition-transform group-hover:scale-105`}
             />
-            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 opacity-0 transition-opacity group-hover:opacity-100">
+            <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 md:opacity-0 transition-opacity md:group-hover:opacity-100">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                 {project.category}
               </span>

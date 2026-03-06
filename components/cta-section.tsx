@@ -17,11 +17,11 @@ export function CTASection() {
           <Button
             asChild
             size="lg"
-            className="bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
+            className="btn-cta bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
           >
             <Link href="/contact">
               Request a Free Quote
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-5 w-5 cta-arrow-icon" />
             </Link>
           </Button>
           <Button

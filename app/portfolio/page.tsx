@@ -15,6 +15,7 @@ export default function PortfolioPage() {
       <PageHero
         title="Our Portfolio"
         subtitle="A Showcase of Quality Printing"
+        accent="blue"
       />
 
       <section className="bg-background py-20">
