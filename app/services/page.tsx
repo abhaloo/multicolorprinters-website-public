@@ -18,7 +18,7 @@ const services = [
     description:
       "Our in-house design team brings your ideas to life. From brand identity to marketing materials, we offer professional designing, editing, typesetting, scanning, and image manipulation services to ensure your prints are pixel-perfect.",
     features: ["Brand Identity Design", "Layout & Typesetting", "Image Editing & Retouching", "Scanning & Digitization", "Pre-Press Preparation"],
-    image: "/images/graphic_design.png",
+    image: "/images/graphic_design.webp",
     alt: "Graphic designer working on a colorful brochure layout with design tools",
   },
   {
@@ -27,7 +27,7 @@ const services = [
     description:
       "Powered by the HP Indigo 5500 digital press, we deliver stunning full-color prints with variable data printing capabilities. Ideal for short runs, personalized marketing, and fast turnaround projects without compromising on quality.",
     features: ["HP Indigo 5500 Technology", "Variable Data Printing", "Short Run Specialists", "Same-Day Turnaround Available", "Pantone Color Matching"],
-    image: "/images/hp_indigo_machine.png",
+    image: "/images/hp_indigo_machine.webp",
     alt: "HP Indigo 5500 digital printing press at Multi Color Printers",
   },
   {
@@ -36,7 +36,7 @@ const services = [
     description:
       "Our Heidelberg SpeedMaster press handles high-volume commercial printing with exceptional consistency. Perfect for large runs of brochures, magazines, books, and marketing collateral with options for varnish coating and special finishes.",
     features: ["Heidelberg SpeedMaster Press", "High-Volume Production", "Varnish & UV Coating", "Spot Color Printing", "Consistent Color Reproduction"],
-    image: "/images/offset_machine.png",
+    image: "/images/offset_machine.webp",
     alt: "Heidelberg SpeedMaster offset printing press in operation",
   },
   {
@@ -45,7 +45,7 @@ const services = [
     description:
       "End-to-end packaging services from structural design to final production. We create eye-catching product packaging, display boxes, and custom containers that protect your products and elevate your brand presence on the shelf.",
     features: ["Custom Box Design", "Product Packaging", "Display & POS Materials", "Die-Cutting & Folding", "Embossing & Foil Stamping"],
-    image: "/images/professional-packaging.png",
+    image: "/images/professional-packaging.webp",
     alt: "Custom product packaging and display boxes produced by Multi Color Printers",
   },
 ]

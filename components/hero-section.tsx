@@ -86,9 +86,9 @@ export function HeroSection() {
 
           {/* Right Image */}
           <div className="relative">
-              <div className="relative overflow-hidden rounded-2xl lg:rounded-t-2xl lg:rounded-b-none">
+            <div className="relative overflow-hidden rounded-2xl lg:rounded-t-2xl lg:rounded-b-none">
               <Image
-                src="/images/hero-printing.jpg"
+                src="/images/hero-printing.webp"
                 alt="Premium printed marketing materials — brochures, business cards, and packaging"
                 width={700}
                 height={600}
