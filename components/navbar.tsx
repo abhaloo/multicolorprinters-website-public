@@ -2,24 +2,15 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { navLinks, companyInfo } from "@/lib/data"
+import { navLinks } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { Logo } from "@/components/logo"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80)
-    // Set initial state
-    setScrolled(window.scrollY > 80)
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     setMobileOpen(false)
@@ -39,31 +30,11 @@ export function Navbar() {
     <>
       <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
         <nav
-          className={cn(
-            "flex items-center gap-6 rounded-full px-5 py-3 transition-all duration-500 pointer-events-auto",
-            scrolled
-              ? "bg-[#F5F0EB]/85 backdrop-blur-xl border border-[#1E2254]/15 shadow-lg shadow-[#111318]/8"
-              : "bg-[#111318]/35 backdrop-blur-md border border-white/10"
-          )}
+          className="flex items-center gap-6 rounded-full px-6 py-3 pointer-events-auto bg-white/90 backdrop-blur-xl border border-[#1E2254]/10 shadow-lg shadow-[#111318]/8"
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image
-              src="/images/logo.gif"
-              alt={companyInfo.name}
-              width={32}
-              height={32}
-              className="h-8 w-auto"
-              unoptimized
-            />
-            <span
-              className={cn(
-                "font-[family-name:var(--font-heading)] text-sm font-bold tracking-tight transition-colors duration-500",
-                scrolled ? "text-[#111318]" : "text-white"
-              )}
-            >
-              {companyInfo.name.split(" ").slice(0, 2).join(" ")}
-            </span>
+          <Link href="/" className="shrink-0">
+            <Logo scale={0.65} />
           </Link>
 
           {/* Desktop nav links */}
@@ -74,13 +45,9 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "text-sm font-medium link-lift transition-colors duration-300",
-                  scrolled
-                    ? pathname === link.href
-                      ? "text-[#F21D2F]"
-                      : "text-[#111318]/70 hover:text-[#111318]"
-                    : pathname === link.href
-                      ? "text-[#F21D2F]"
-                      : "text-white/90 hover:text-white"
+                  pathname === link.href
+                    ? "text-[#F21D2F]"
+                    : "text-[#111318]/70 hover:text-[#111318]"
                 )}
               >
                 {link.label}
@@ -100,10 +67,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={cn(
-              "md:hidden rounded-full p-1.5 transition-colors",
-              scrolled ? "text-[#111318]" : "text-white"
-            )}
+            className="md:hidden rounded-full p-1.5 text-[#111318]"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >
