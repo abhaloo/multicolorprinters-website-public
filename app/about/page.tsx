@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/section-header"
 import { CTASection } from "@/components/cta-section"
 import { companyInfo } from "@/lib/data"
 import { CountUp } from "@/components/count-up"
+import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
   title: "About Us | Multi Color Printers",
@@ -68,46 +69,50 @@ export default function AboutPage() {
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <SectionHeader
-                label="Our story"
-                heading="Built on Quality, Driven by Passion"
-                centered={false}
-              />
-              <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  Multi Color Printers has been at the heart of Zanzibar&apos;s printing
-                  industry for over 25 years. What started as a small print shop has
-                  grown into the island&apos;s most trusted commercial printing house,
-                  serving some of the region&apos;s leading hotels, government bodies,
-                  and businesses across East Africa.
-                </p>
-                <p>
-                  Our commitment to excellence has driven us to invest in world-class
-                  equipment — from the HP Indigo 5500 digital press to the Heidelberg
-                  SpeedMaster offset press — ensuring that every project we handle
-                  meets the highest international standards.
-                </p>
-              </div>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="rounded-xl border border-border bg-card p-6 text-center"
-                >
-                  <CountUp
-                    value={stat.value}
-                    className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary"
-                  />
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {stat.label}
+            <AnimateIn variant="fade-right">
+              <div>
+                <SectionHeader
+                  label="Our story"
+                  heading="Built on Quality, Driven by Passion"
+                  centered={false}
+                />
+                <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+                  <p>
+                    Multi Color Printers has been at the heart of Zanzibar&apos;s printing
+                    industry for over 25 years. What started as a small print shop has
+                    grown into the island&apos;s most trusted commercial printing house,
+                    serving some of the region&apos;s leading hotels, government bodies,
+                    and businesses across East Africa.
+                  </p>
+                  <p>
+                    Our commitment to excellence has driven us to invest in world-class
+                    equipment — from the HP Indigo 5500 digital press to the Heidelberg
+                    SpeedMaster offset press — ensuring that every project we handle
+                    meets the highest international standards.
                   </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            </AnimateIn>
+
+            {/* Stats Grid */}
+            <AnimateIn variant="fade-left" delay={150}>
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="rounded-xl border border-border bg-card p-6 text-center"
+                  >
+                    <CountUp
+                      value={stat.value}
+                      className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary"
+                    />
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </AnimateIn>
           </div>
         </div>
       </section>
@@ -115,26 +120,29 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="bg-card py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader
-            label="Our mission"
-            heading="What Drives Us Every Day"
-          />
+          <AnimateIn>
+            <SectionHeader
+              label="Our mission"
+              heading="What Drives Us Every Day"
+            />
+          </AnimateIn>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {pillars.map((pillar) => (
-              <div
-                key={pillar.title}
-                className="rounded-xl border border-border bg-background p-8 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
-              >
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
-                  <pillar.icon className="h-7 w-7 text-secondary" />
+            {pillars.map((pillar, index) => (
+              <AnimateIn key={pillar.title} variant="fade-up" delay={index * 100}>
+                <div
+                  className="rounded-xl border border-border bg-background p-8 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
+                >
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-secondary/10">
+                    <pillar.icon className="h-7 w-7 text-secondary" />
+                  </div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-foreground">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {pillar.description}
+                  </p>
                 </div>
-                <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-foreground">
-                  {pillar.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {pillar.description}
-                </p>
-              </div>
+              </AnimateIn>
             ))}
           </div>
         </div>
@@ -143,14 +151,16 @@ export default function AboutPage() {
       {/* Equipment */}
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader
-            label="Our equipment"
-            heading="Industry-Leading Technology"
-          />
+          <AnimateIn>
+            <SectionHeader
+              label="Our equipment"
+              heading="Industry-Leading Technology"
+            />
+          </AnimateIn>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {equipment.map((item) => (
+            {equipment.map((item, index) => (
+              <AnimateIn key={item.name} variant="fade-up" delay={index * 150}>
               <div
-                key={item.name}
                 className="rounded-2xl border border-border bg-card p-8"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
@@ -177,6 +187,7 @@ export default function AboutPage() {
                   ))}
                 </ul>
               </div>
+              </AnimateIn>
             ))}
           </div>
         </div>

@@ -4,6 +4,7 @@ import { Palette, Printer, Factory, Package } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { CTASection } from "@/components/cta-section"
 import { servicesList } from "@/lib/data"
+import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
   title: "Our Services | Multi Color Printers",
@@ -71,19 +72,22 @@ export default function ServicesPage() {
                 }`}
             >
               {/* Service Image */}
-              <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
+              <AnimateIn variant={index % 2 === 0 ? "fade-right" : "fade-left"}>
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <div className="aspect-[4/3] relative rounded-2xl overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={service.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
                 </div>
-              </div>
+              </AnimateIn>
 
               {/* Text */}
+              <AnimateIn variant={index % 2 === 0 ? "fade-left" : "fade-right"} delay={100}>
               <div className={index % 2 === 1 ? "lg:order-1" : ""}>
                 <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
                   <service.icon className="h-6 w-6 text-secondary" />
@@ -106,6 +110,7 @@ export default function ServicesPage() {
                   ))}
                 </ul>
               </div>
+              </AnimateIn>
             </div>
           </div>
         </section>
@@ -114,22 +119,25 @@ export default function ServicesPage() {
       {/* Products Grid */}
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">
-              Complete product range
-            </p>
-            <h2 className="font-[family-name:var(--font-heading)] mt-2 text-2xl font-bold text-foreground md:text-3xl">
-              Everything We Print
-            </h2>
-          </div>
+          <AnimateIn>
+            <div className="text-center">
+              <p className="text-sm font-semibold uppercase tracking-wider text-primary">
+                Complete product range
+              </p>
+              <h2 className="font-[family-name:var(--font-heading)] mt-2 text-2xl font-bold text-foreground md:text-3xl">
+                Everything We Print
+              </h2>
+            </div>
+          </AnimateIn>
           <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-            {servicesList.map((product) => (
-              <div
-                key={product}
-                className="rounded-lg border border-border bg-card px-4 py-3 text-center text-sm font-medium text-foreground transition-colors hover:border-primary/30"
-              >
-                {product}
-              </div>
+            {servicesList.map((product, index) => (
+              <AnimateIn key={product} variant="fade-up" delay={Math.min(index * 30, 400)}>
+                <div
+                  className="rounded-lg border border-border bg-card px-4 py-3 text-center text-sm font-medium text-foreground transition-colors hover:border-primary/30"
+                >
+                  {product}
+                </div>
+              </AnimateIn>
             ))}
           </div>
         </div>

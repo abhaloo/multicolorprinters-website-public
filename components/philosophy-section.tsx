@@ -104,7 +104,7 @@ export function PhilosophySection() {
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         {/* Counter-statement */}
         <p className="philosophy-neutral font-[family-name:var(--font-heading)] text-base text-white/30 md:text-lg">
-          Most print shops focus on: volume and speed.
+          Most print shops focus on: volume and speed. That's our bare minimum.
         </p>
 
         {/* Main manifesto */}

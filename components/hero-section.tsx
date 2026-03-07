@@ -53,11 +53,13 @@ export function HeroSection() {
         <div className="max-w-2xl">
 
           {/* Pre-label */}
-          <div className="hero-anim mb-5 flex items-center gap-3 opacity-0">
-            <span className="h-px w-8 bg-[#F21D2F]" aria-hidden="true" />
-            <span className="font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.22em] text-[#F21D2F]">
-              Zanzibar&apos;s Master Press Since 1995
-            </span>
+          <div className="hero-anim mb-5 opacity-0 w-fit">
+            <div className="flex items-center gap-3 rounded-full border border-white/15 bg-white/10 backdrop-blur-md px-4 py-2">
+              <span className="h-px w-6 bg-[#F21D2F]" aria-hidden="true" />
+              <span className="font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.22em] text-white">
+                Zanzibar&apos;s Master Press Since 1995
+              </span>
+            </div>
           </div>
 
           {/* Two-part headline */}
@@ -97,21 +99,23 @@ export function HeroSection() {
           </div>
 
           {/* Stats row */}
-          <div className="hero-anim mt-10 flex flex-wrap gap-8 opacity-0 border-t border-white/15 pt-8">
-            {[
-              { value: companyInfo.stats.yearsExperience, label: "Years of Craft" },
-              { value: companyInfo.stats.projectsDelivered, label: "Orders Pressed" },
-              { value: companyInfo.stats.businessesServed, label: "Brands Served" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white md:text-3xl">
-                  {stat.value}
+          <div className="hero-anim mt-8 opacity-0">
+            <div className="inline-flex flex-wrap gap-8 rounded-[1.5rem] border border-white/10 bg-white/10 backdrop-blur-md px-6 py-5">
+              {[
+                { value: companyInfo.stats.yearsExperience, label: "Years of Craft" },
+                { value: companyInfo.stats.projectsDelivered, label: "Orders Pressed" },
+                { value: companyInfo.stats.businessesServed, label: "Brands Served" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <div className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white md:text-3xl">
+                    {stat.value}
+                  </div>
+                  <div className="font-[family-name:var(--font-data)] text-[10px] uppercase tracking-widest text-white/60">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="font-[family-name:var(--font-data)] text-[10px] uppercase tracking-widest text-white/45">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

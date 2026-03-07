@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { PageHero } from "@/components/page-hero"
 import { PortfolioGallery } from "@/components/portfolio-gallery"
 import { CTASection } from "@/components/cta-section"
+import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
   title: "Our Portfolio | Multi Color Printers",
@@ -20,7 +21,9 @@ export default function PortfolioPage() {
 
       <section className="bg-background py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <PortfolioGallery />
+          <AnimateIn>
+            <PortfolioGallery />
+          </AnimateIn>
         </div>
       </section>
 

@@ -10,7 +10,7 @@ export const companyInfo = {
     facebook: "https://www.facebook.com/multicolorprinters",
   },
   stats: {
-    yearsExperience: "25+",
+    yearsExperience: `${new Date().getFullYear() - 1995}+`,
     projectsDelivered: "30,000+",
     businessesServed: "700+",
     satisfaction: "99%",

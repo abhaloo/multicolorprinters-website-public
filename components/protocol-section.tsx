@@ -45,18 +45,18 @@ function RotatingCircles() {
 
 function ScanningLaser() {
   return (
-    <div className="relative w-52 h-32" aria-hidden="true">
-      {/* Dot grid */}
+    <div className="relative w-80 h-64 md:w-96 md:h-72" aria-hidden="true">
+      {/* Dot grid — 8 rows × 12 cols */}
       <div
         className="absolute inset-0 grid"
         style={{
-          gridTemplateRows: "repeat(5, 1fr)",
-          gridTemplateColumns: "repeat(8, 1fr)",
+          gridTemplateRows: "repeat(8, 1fr)",
+          gridTemplateColumns: "repeat(12, 1fr)",
         }}
       >
-        {Array.from({ length: 40 }).map((_, i) => (
+        {Array.from({ length: 96 }).map((_, i) => (
           <div key={i} className="flex items-center justify-center">
-            <div className="h-[3px] w-[3px] rounded-full bg-white/20" />
+            <div className="h-[3px] w-[3px] rounded-full bg-white/25" />
           </div>
         ))}
       </div>
@@ -64,9 +64,18 @@ function ScanningLaser() {
       <div
         className="absolute top-0 bottom-0 w-[2px] rounded-full"
         style={{
-          background: "linear-gradient(to bottom, transparent, rgba(242,29,47,0.9), transparent)",
-          boxShadow: "0 0 10px 3px rgba(242,29,47,0.5)",
+          background: "linear-gradient(to bottom, transparent 0%, rgba(242,29,47,0.95) 50%, transparent 100%)",
+          boxShadow: "0 0 16px 4px rgba(242,29,47,0.55)",
           animation: "laser-scan 2.2s ease-in-out infinite",
+        }}
+      />
+      {/* Glow halo around laser */}
+      <div
+        className="absolute top-0 bottom-0 w-8"
+        style={{
+          background: "linear-gradient(to right, transparent, rgba(242,29,47,0.06), transparent)",
+          animation: "laser-scan 2.2s ease-in-out infinite",
+          transform: "translateX(-1rem)",
         }}
       />
     </div>
@@ -75,29 +84,62 @@ function ScanningLaser() {
 
 function EKGWaveform() {
   const pathD =
-    "M0,28 L22,28 L28,8 L34,48 L40,8 L46,28 L80,28 L86,8 L92,48 L98,8 L104,28 L138,28 L144,8 L150,48 L156,8 L162,28 L200,28"
+    "M0,60 L30,60 L38,15 L46,105 L54,15 L62,60 " +
+    "L100,60 L108,15 L116,105 L124,15 L132,60 " +
+    "L170,60 L178,15 L186,105 L194,15 L202,60 " +
+    "L240,60 L248,15 L256,105 L264,15 L272,60 " +
+    "L320,60"
   return (
-    <svg
-      width="200"
-      height="56"
-      viewBox="0 0 200 56"
-      aria-hidden="true"
-      className="overflow-visible shrink-0"
-    >
-      <path
-        d={pathD}
-        fill="none"
-        stroke="rgba(255,255,255,0.85)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        style={{
-          strokeDasharray: 500,
-          strokeDashoffset: 500,
-          animation: "ekg-draw 2.4s ease-out infinite",
-        }}
-      />
-    </svg>
+    <div className="w-80 md:w-96" aria-hidden="true">
+      <svg
+        width="100%"
+        viewBox="0 0 320 120"
+        aria-hidden="true"
+        className="overflow-visible"
+      >
+        {/* Faint baseline grid lines */}
+        {[30, 60, 90].map((y) => (
+          <line
+            key={y}
+            x1="0" y1={y} x2="320" y2={y}
+            stroke="rgba(255,255,255,0.08)"
+            strokeWidth="1"
+          />
+        ))}
+        {/* Main EKG path */}
+        <path
+          d={pathD}
+          fill="none"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{
+            strokeDasharray: 900,
+            strokeDashoffset: 900,
+            animation: "ekg-draw 2.8s ease-out infinite",
+          }}
+        />
+        {/* Trailing glow duplicate */}
+        <path
+          d={pathD}
+          fill="none"
+          stroke="rgba(242,29,47,0.4)"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{
+            strokeDasharray: 900,
+            strokeDashoffset: 900,
+            animation: "ekg-draw 2.8s ease-out infinite",
+            filter: "blur(4px)",
+          }}
+        />
+      </svg>
+      <div className="mt-4 font-[family-name:var(--font-data)] text-[10px] uppercase tracking-[0.2em] text-white/30 text-center">
+        Quality Output Signal
+      </div>
+    </div>
   )
 }
 
