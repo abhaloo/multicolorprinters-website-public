@@ -184,16 +184,6 @@
   transition: transform 0.15s ease;
 }
 
-/* Form validation feedback — only after user interaction */
-input:not(:placeholder-shown):valid,
-textarea:not(:placeholder-shown):valid {
-  border-color: var(--secondary);
-}
-
-input:not(:placeholder-shown):invalid,
-textarea:not(:placeholder-shown):invalid {
-  border-color: var(--primary);
-}
 
 /* Nav link sliding underline */
 .nav-link-underline {
@@ -216,4 +206,22 @@ textarea:not(:placeholder-shown):invalid {
 .nav-link-underline:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* Confetti burst animation for form success */
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--confetti-x), var(--confetti-y)) scale(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes confetti-burst {
+    0%, 100% { opacity: 0; }
+  }
 }

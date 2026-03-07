@@ -1,10 +1,11 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-import { Send, ChevronDown, CheckCircle2 } from "lucide-react"
+import { Send, ChevronDown, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { SuccessCelebration } from "@/components/success-celebration"
 
 const serviceOptions = [
   "Graphic Design",
@@ -31,23 +32,100 @@ const paperSizeOptions = [
 ]
 
 const turnaroundOptions = [
-  "Standard (5–7 days)",
-  "Rush (2–3 days)",
+  "Standard (5-7 days)",
+  "Rush (2-3 days)",
   "Not sure",
 ]
 
-const inputClasses =
-  "w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20"
+// Micro-copy shown below each field when valid
+const validationMessages: Record<string, string> = {
+  name: "Perfect, thank you",
+  email: "We'll reach out to you soon",
+  phone: "Got it, thanks",
+  service: "Great choice",
+  message: "Thank you for sharing",
+  description: "Noted",
+  quantity: "Got it",
+}
+
+// Validation rules per field
+function isFieldValid(name: string, value: string): boolean {
+  if (!value || value.trim() === "") return false
+  if (name === "email") return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  return true
+}
+
+interface FieldState {
+  touched: boolean
+  valid: boolean
+}
+
+function ValidationFeedback({ field, name }: { field: FieldState | undefined; name: string }) {
+  if (!field?.touched || !field.valid) return null
+  return (
+    <p className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 animate-in fade-in slide-in-from-bottom-1 duration-300">
+      {validationMessages[name] || "Looks good"}
+    </p>
+  )
+}
+
+function CheckIcon({ field, className }: { field: FieldState | undefined; className?: string }) {
+  if (!field?.touched || !field.valid) return null
+  return (
+    <div className={cn("pointer-events-none absolute right-3 animate-in fade-in zoom-in duration-200", className ?? "top-1/2 -translate-y-1/2")}>
+      <Check className="h-5 w-5 text-green-500" strokeWidth={2.5} />
+    </div>
+  )
+}
+
+const initialFieldState: Record<string, FieldState> = {}
 
 export function ContactForm() {
   const [pending, setPending] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [fieldState, setFieldState] = useState<Record<string, FieldState>>(initialFieldState)
   const loadedAt = useRef<number>(0)
 
   useEffect(() => {
     loadedAt.current = Date.now()
   }, [])
+
+  const handleFieldBlur = useCallback((e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    if (!name) return
+    setFieldState((prev) => ({
+      ...prev,
+      [name]: {
+        touched: true,
+        valid: isFieldValid(name, value),
+      },
+    }))
+  }, [])
+
+  const handleFieldChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    if (!name) return
+    setFieldState((prev) => {
+      const field = prev[name]
+      // Only re-validate on change if already touched
+      if (!field?.touched) return prev
+      return {
+        ...prev,
+        [name]: {
+          ...field,
+          valid: isFieldValid(name, value),
+        },
+      }
+    })
+  }, [])
+
+  function getFieldClasses(name: string) {
+    const field = fieldState[name]
+    if (!field?.touched) return "border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
+    if (field.valid) return "border-green-400 focus:border-green-500 focus:ring-2 focus:ring-green-500/20"
+    return "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-400/20"
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -99,7 +177,6 @@ export function ContactForm() {
       }
 
       form.reset()
-      toast.success("Thank you! We'll get back to you within 24 hours.")
       setSubmitted(true)
     } catch {
       toast.error("Network error. Please check your connection and try again.")
@@ -110,30 +187,20 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center gap-4 py-12 text-center animate-in fade-in zoom-in duration-500">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-          <CheckCircle2 className="h-8 w-8 text-green-600" />
-        </div>
-        <h3 className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground">
-          Quote Request Sent!
-        </h3>
-        <p className="max-w-sm text-sm text-muted-foreground leading-relaxed">
-          Thank you! We&apos;ll review your project details and get back to you within 24 hours.
-        </p>
-        <Button
-          onClick={() => setSubmitted(false)}
-          variant="outline"
-          className="mt-2"
-        >
-          Submit Another Request
-        </Button>
-      </div>
+      <SuccessCelebration
+        onReset={() => {
+          setSubmitted(false)
+          setFieldState(initialFieldState)
+        }}
+      />
     )
   }
 
+  const baseInputClasses = "w-full rounded-lg border bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors"
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      {/* Honeypot — invisible to humans, bots auto-fill it */}
+      {/* Honeypot */}
       <input
         name="website"
         tabIndex={-1}
@@ -148,28 +215,40 @@ export function ContactForm() {
           <label htmlFor="name" className="mb-1 block text-sm font-medium text-foreground">
             Full Name <span className="text-primary">*</span>
           </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            className={inputClasses}
-            placeholder="Your name"
-          />
+          <div className="relative">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              className={cn(baseInputClasses, "pr-10", getFieldClasses("name"))}
+              placeholder="Your name"
+              onBlur={handleFieldBlur}
+              onChange={handleFieldChange}
+            />
+            <CheckIcon field={fieldState.name} />
+          </div>
+          <ValidationFeedback field={fieldState.name} name="name" />
         </div>
 
         <div>
           <label htmlFor="email" className="mb-1 block text-sm font-medium text-foreground">
             Email <span className="text-primary">*</span>
           </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className={inputClasses}
-            placeholder="your@email.com"
-          />
+          <div className="relative">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              className={cn(baseInputClasses, "pr-10", getFieldClasses("email"))}
+              placeholder="your@email.com"
+              onBlur={handleFieldBlur}
+              onChange={handleFieldChange}
+            />
+            <CheckIcon field={fieldState.email} />
+          </div>
+          <ValidationFeedback field={fieldState.email} name="email" />
         </div>
       </div>
 
@@ -179,27 +258,44 @@ export function ContactForm() {
           <label htmlFor="phone" className="mb-1 block text-sm font-medium text-foreground">
             Phone
           </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            className={inputClasses}
-            placeholder="+255 xxx xxx xxx"
-          />
+          <div className="relative">
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              className={cn(baseInputClasses, "pr-10", getFieldClasses("phone"))}
+              placeholder="+255 xxx xxx xxx"
+              onBlur={handleFieldBlur}
+              onChange={handleFieldChange}
+            />
+            <CheckIcon field={fieldState.phone} />
+          </div>
+          <ValidationFeedback field={fieldState.phone} name="phone" />
         </div>
 
         <div>
           <label htmlFor="service" className="mb-1 block text-sm font-medium text-foreground">
             Service <span className="text-primary">*</span>
           </label>
-          <select id="service" name="service" required className={inputClasses}>
-            <option value="">Select a service</option>
-            {serviceOptions.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              id="service"
+              name="service"
+              required
+              className={cn(baseInputClasses, "pr-10", getFieldClasses("service"))}
+              onBlur={handleFieldBlur}
+              onChange={handleFieldChange}
+            >
+              <option value="">Select a service</option>
+              {serviceOptions.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+            <CheckIcon field={fieldState.service} />
+          </div>
+          <ValidationFeedback field={fieldState.service} name="service" />
         </div>
       </div>
 
@@ -226,26 +322,38 @@ export function ContactForm() {
               <label htmlFor="description" className="mb-1 block text-sm font-medium text-foreground">
                 Product Description
               </label>
-              <input
-                id="description"
-                name="description"
-                type="text"
-                className={inputClasses}
-                placeholder="e.g., Business cards"
-              />
+              <div className="relative">
+                <input
+                  id="description"
+                  name="description"
+                  type="text"
+                  className={cn(baseInputClasses, "pr-10", getFieldClasses("description"))}
+                  placeholder="e.g., Business cards"
+                  onBlur={handleFieldBlur}
+                  onChange={handleFieldChange}
+                />
+                <CheckIcon field={fieldState.description} />
+              </div>
+              <ValidationFeedback field={fieldState.description} name="description" />
             </div>
 
             <div>
               <label htmlFor="quantity" className="mb-1 block text-sm font-medium text-foreground">
                 Quantity
               </label>
-              <input
-                id="quantity"
-                name="quantity"
-                type="text"
-                className={inputClasses}
-                placeholder="e.g., 500, 1000, 5000"
-              />
+              <div className="relative">
+                <input
+                  id="quantity"
+                  name="quantity"
+                  type="text"
+                  className={cn(baseInputClasses, "pr-10", getFieldClasses("quantity"))}
+                  placeholder="e.g., 500, 1000, 5000"
+                  onBlur={handleFieldBlur}
+                  onChange={handleFieldChange}
+                />
+                <CheckIcon field={fieldState.quantity} />
+              </div>
+              <ValidationFeedback field={fieldState.quantity} name="quantity" />
             </div>
           </div>
 
@@ -255,28 +363,48 @@ export function ContactForm() {
               <label htmlFor="paperSize" className="mb-1 block text-sm font-medium text-foreground">
                 Paper Size
               </label>
-              <select id="paperSize" name="paperSize" className={inputClasses}>
-                <option value="">Select size</option>
-                {paperSizeOptions.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  id="paperSize"
+                  name="paperSize"
+                  className={cn(baseInputClasses, "pr-10", getFieldClasses("paperSize"))}
+                  onBlur={handleFieldBlur}
+                  onChange={handleFieldChange}
+                >
+                  <option value="">Select size</option>
+                  {paperSizeOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+                <CheckIcon field={fieldState.paperSize} />
+              </div>
+              <ValidationFeedback field={fieldState.paperSize} name="paperSize" />
             </div>
 
             <div>
               <label htmlFor="turnaround" className="mb-1 block text-sm font-medium text-foreground">
                 Turnaround Time
               </label>
-              <select id="turnaround" name="turnaround" className={inputClasses}>
-                <option value="">Select timeframe</option>
-                {turnaroundOptions.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  id="turnaround"
+                  name="turnaround"
+                  className={cn(baseInputClasses, "pr-10", getFieldClasses("turnaround"))}
+                  onBlur={handleFieldBlur}
+                  onChange={handleFieldChange}
+                >
+                  <option value="">Select timeframe</option>
+                  {turnaroundOptions.map((opt) => (
+                    <option key={opt} value={opt}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+                <CheckIcon field={fieldState.turnaround} />
+              </div>
+              <ValidationFeedback field={fieldState.turnaround} name="turnaround" />
             </div>
           </div>
         </>
@@ -287,14 +415,20 @@ export function ContactForm() {
         <label htmlFor="message" className="mb-1 block text-sm font-medium text-foreground">
           Project Details <span className="text-primary">*</span>
         </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={4}
-          className={`${inputClasses} resize-none`}
-          placeholder="Tell us about your project..."
-        />
+        <div className="relative">
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows={4}
+            className={cn(baseInputClasses, "resize-none pr-10", getFieldClasses("message"))}
+            placeholder="Tell us about your project..."
+            onBlur={handleFieldBlur}
+            onChange={handleFieldChange}
+          />
+          <CheckIcon field={fieldState.message} className="top-3" />
+        </div>
+        <ValidationFeedback field={fieldState.message} name="message" />
       </div>
 
       <Button
