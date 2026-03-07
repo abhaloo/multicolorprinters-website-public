@@ -73,10 +73,10 @@ export function HeroSection() {
           {/* Two-part headline */}
           <h1 className="flex flex-col">
             <span className="hero-anim font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-wider text-white/60 opacity-0 md:text-2xl">
-              Ink becomes
+              Our ink becomes your
             </span>
             <span className="hero-anim font-[family-name:var(--font-drama)] italic font-black leading-none text-white opacity-0 text-[4.5rem] md:text-[7rem] lg:text-[8.5rem]">
-              Legacy.
+              Identity.
             </span>
           </h1>
 

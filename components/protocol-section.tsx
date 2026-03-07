@@ -8,45 +8,187 @@ gsap.registerPlugin(ScrollTrigger)
 
 /* ─── SVG Animations ─── */
 
-function RotatingCircles() {
+function MonitorSkeleton() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hide immediately on mount to prevent one-frame flash
+      gsap.set(".sk", { opacity: 0, y: 6 })
+
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.8 })
+
+      // Reset to clean state at start of every cycle
+      tl.set(".sk", { opacity: 0, y: 6 })
+
+      // Nav dots then bar — staggered vertical fade-in
+      tl.to(".sk-nav-dot", { opacity: 1, y: 0, duration: 0.25, stagger: 0.08, ease: "power2.out" })
+      tl.to(".sk-nav-bar", { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, "<0.1")
+
+      // Hero block
+      tl.to(".sk-hero", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "+=0.12")
+
+      // Text lines (top to bottom stagger)
+      tl.to(".sk-line", { opacity: 1, y: 0, duration: 0.25, stagger: 0.1, ease: "power2.out" }, "+=0.1")
+
+      // Two-col content block as a single unit
+      tl.to(".sk-block", { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, "+=0.1")
+
+      // Fade everything out simultaneously (upward exit)
+      tl.to(".sk", { opacity: 0, y: -4, duration: 0.4 }, "+=0.7")
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <svg
-      width="200"
-      height="200"
-      viewBox="0 0 200 200"
+    <div
+      ref={containerRef}
+      className="flex flex-col items-center select-none"
       aria-hidden="true"
-      className="shrink-0"
     >
-      {[80, 60, 40, 20].map((r, i) => (
-        <circle
-          key={r}
-          cx="100"
-          cy="100"
-          r={r}
-          fill="none"
-          stroke="rgba(255,255,255,0.3)"
-          strokeWidth="1.5"
-          strokeDasharray={`${r * 0.5} ${r * 0.12}`}
+      {/* Monitor body */}
+      <div
+        className="relative rounded-[12px] p-[10px] w-64 md:w-80"
+        style={{
+          background: "linear-gradient(160deg, #22263a, #191c2d)",
+          border: "2px solid rgba(255,255,255,0.07)",
+          boxShadow:
+            "0 16px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06)",
+        }}
+      >
+        {/* Screen */}
+        <div
+          className="relative overflow-hidden rounded-[6px] bg-[#07090f]"
+          style={{ aspectRatio: "16/10" }}
         >
-          <animateTransform
-            attributeName="transform"
-            type="rotate"
-            from={`0 100 100`}
-            to={`${i % 2 === 0 ? 360 : -360} 100 100`}
-            dur={`${5 + i * 2}s`}
-            repeatCount="indefinite"
+          <div className="p-[10px] flex flex-col gap-[7px]">
+            {/* Nav row */}
+            <div className="flex items-center gap-[5px]">
+              <div className="sk sk-nav-dot h-[6px] w-[6px] rounded-full bg-[#F21D2F]/65" />
+              <div className="sk sk-nav-dot h-[6px] w-[6px] rounded-full bg-white/20" />
+              <div className="sk sk-nav-dot h-[6px] w-[6px] rounded-full bg-white/20" />
+              <div className="sk sk-nav-bar ml-auto h-[5px] w-[38%] rounded-full bg-white/15" />
+            </div>
+
+            {/* Hero block */}
+            <div className="sk sk-hero h-10 rounded-[4px] bg-white/10" />
+
+            {/* Text lines */}
+            <div className="sk sk-line h-[4px] w-[88%] rounded-full bg-white/20" />
+            <div className="sk sk-line h-[4px] w-[72%] rounded-full bg-white/15" />
+            <div className="sk sk-line h-[4px] w-[80%] rounded-full bg-white/12" />
+
+            {/* Two-col content — animated as a single unit */}
+            <div className="sk sk-block flex gap-[7px] mt-[2px]">
+              <div className="h-7 w-[38%] rounded-[3px] bg-white/10" />
+              <div className="flex-1 flex flex-col gap-[5px] pt-[2px]">
+                <div className="h-[4px] w-full rounded-full bg-white/15" />
+                <div className="h-[4px] w-[75%] rounded-full bg-white/12" />
+                <div className="h-[4px] w-[55%] rounded-full bg-white/10" />
+              </div>
+            </div>
+          </div>
+
+          {/* Blinking cursor */}
+          <div
+            className="absolute bottom-[8px] left-[10px] h-[9px] w-[1.5px] rounded-full bg-[#F21D2F]/65"
+            style={{ animation: "cursor-blink 1.1s step-end infinite" }}
           />
-        </circle>
-      ))}
-      <circle cx="100" cy="100" r="4" fill="#F21D2F" />
-    </svg>
+        </div>
+
+        {/* Chin with power LED */}
+        <div className="flex items-center justify-center pt-[8px]">
+          <div
+            className="h-[4px] w-[4px] rounded-full bg-[#F21D2F]/55 animate-pulse"
+            style={{ boxShadow: "0 0 6px 2px rgba(242,29,47,0.35)" }}
+          />
+        </div>
+      </div>
+
+      {/* Stand neck */}
+      <div
+        className="w-[22px] h-[14px]"
+        style={{
+          background: "linear-gradient(to bottom, #22263a, #191c2d)",
+          borderLeft: "2px solid rgba(255,255,255,0.06)",
+          borderRight: "2px solid rgba(255,255,255,0.06)",
+        }}
+      />
+
+      {/* Stand base */}
+      <div
+        className="h-[6px] w-[76px] rounded-[3px]"
+        style={{
+          background: "linear-gradient(to bottom, #22263a, #191c2d)",
+          border: "2px solid rgba(255,255,255,0.06)",
+        }}
+      />
+    </div>
   )
 }
 
-function ScanningLaser() {
+function PrintingPage() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const laserRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const laser = laserRef.current
+      if (!laser) return
+
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.6 })
+
+      // ── Reset to clean state at start of every cycle ──
+      tl.set(".pp-el", { opacity: 0, y: 6 })
+      tl.set(laser, { left: 0 })
+
+      // ── Six strokes — each sweeps the laser then reveals one element ──
+
+      // Stroke 1 → letterhead bar
+      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
+      tl.to(".pp-el-1", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.set(laser, { left: 0 })
+
+      // Stroke 2 → rule line
+      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
+      tl.to(".pp-el-2", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.set(laser, { left: 0 })
+
+      // Stroke 3 → text line cluster
+      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
+      tl.to(".pp-el-3", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.set(laser, { left: 0 })
+
+      // Stroke 4 → image block + text stub
+      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
+      tl.to(".pp-el-4", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.set(laser, { left: 0 })
+
+      // Stroke 5 → footer
+      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
+      tl.to(".pp-el-5", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.set(laser, { left: 0 })
+
+      // Stroke 6 → color swatch row
+      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
+      tl.to(".pp-el-6", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.set(laser, { left: 0 })
+
+      // ── Hold fully-printed state, then fade everything out ──
+      tl.to(".pp-el", { opacity: 0, y: -4, duration: 0.35, stagger: 0.05 }, "+=1.0")
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <div className="relative w-80 h-64 md:w-96 md:h-72" aria-hidden="true">
-      {/* Dot grid — 8 rows × 12 cols */}
+    <div
+      ref={containerRef}
+      className="relative w-80 h-64 md:w-96 md:h-72 select-none"
+      aria-hidden="true"
+    >
+      {/* ── Dot grid background ── */}
       <div
         className="absolute inset-0 grid"
         style={{
@@ -56,88 +198,221 @@ function ScanningLaser() {
       >
         {Array.from({ length: 96 }).map((_, i) => (
           <div key={i} className="flex items-center justify-center">
-            <div className="h-[3px] w-[3px] rounded-full bg-white/25" />
+            <div className="h-[3px] w-[3px] rounded-full bg-white/20" />
           </div>
         ))}
       </div>
-      {/* Laser line */}
+
+      {/* ── Page document ── */}
       <div
-        className="absolute top-0 bottom-0 w-[2px] rounded-full"
+        className="absolute top-[6%] left-[14%] right-[14%] bottom-[6%] rounded-[5px] overflow-hidden flex flex-col justify-between p-[14px]"
         style={{
-          background: "linear-gradient(to bottom, transparent 0%, rgba(242,29,47,0.95) 50%, transparent 100%)",
-          boxShadow: "0 0 16px 4px rgba(242,29,47,0.55)",
-          animation: "laser-scan 2.2s ease-in-out infinite",
+          background: "rgba(255,255,255,0.025)",
+          border: "1px solid rgba(255,255,255,0.14)",
+          boxShadow: "0 6px 28px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04)",
         }}
-      />
-      {/* Glow halo around laser */}
+      >
+        {/* Element 1: Letterhead bar */}
+        <div className="pp-el pp-el-1 flex items-center gap-[7px] shrink-0">
+          <div className="h-[8px] w-[8px] rounded-full bg-[#F21D2F]/80 shrink-0" />
+          <div className="h-[5px] flex-1 rounded-full bg-white/55" />
+          <div className="h-[5px] w-[20%] rounded-full bg-white/30" />
+        </div>
+
+        {/* Element 2: Horizontal rule */}
+        <div className="pp-el pp-el-2 h-[1px] w-full bg-white/20 shrink-0" />
+
+        {/* Element 3: Text line cluster */}
+        <div className="pp-el pp-el-3 flex flex-col gap-[6px] shrink-0">
+          <div className="h-[4px] w-[92%] rounded-full bg-white/45" />
+          <div className="h-[4px] w-[76%] rounded-full bg-white/35" />
+          <div className="h-[4px] w-[84%] rounded-full bg-white/28" />
+        </div>
+
+        {/* Element 4: Image block + text stub */}
+        <div className="pp-el pp-el-4 flex gap-[10px] shrink-0">
+          <div className="h-[30px] w-[30px] rounded-[3px] bg-white/15 shrink-0" />
+          <div className="flex flex-col gap-[5px] pt-[3px]">
+            <div className="h-[4px] w-[110px] md:w-[130px] rounded-full bg-white/40" />
+            <div className="h-[4px] w-[85px] md:w-[100px] rounded-full bg-white/28" />
+          </div>
+        </div>
+
+        {/* Element 5: Footer rule */}
+        <div className="pp-el pp-el-5 h-[1px] w-[55%] bg-white/15" />
+
+        {/* Element 6: Color swatch row */}
+        <div className="pp-el pp-el-6 shrink-0 flex items-center gap-[6px]">
+          <div className="h-[10px] w-[10px] rounded-full bg-[#F21D2F]/80 shrink-0" />
+          <div className="h-[10px] w-[10px] rounded-full shrink-0" style={{ background: "rgba(234,179,8,0.85)" }} />
+          <div className="h-[10px] w-[10px] rounded-full shrink-0" style={{ background: "rgba(59,130,246,0.85)" }} />
+          <div className="h-[4px] flex-1 rounded-full bg-white/20 ml-[4px]" />
+        </div>
+      </div>
+
+      {/* ── Laser line — position controlled by GSAP via laserRef ── */}
       <div
-        className="absolute top-0 bottom-0 w-8"
+        ref={laserRef}
+        className="absolute top-0 bottom-0 w-[2px] rounded-full pointer-events-none"
         style={{
-          background: "linear-gradient(to right, transparent, rgba(242,29,47,0.06), transparent)",
-          animation: "laser-scan 2.2s ease-in-out infinite",
-          transform: "translateX(-1rem)",
+          left: 0,
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(242,29,47,0.95) 50%, transparent 100%)",
+          boxShadow:
+            "0 0 18px 5px rgba(242,29,47,0.50), 0 0 4px 1px rgba(242,29,47,0.85)",
         }}
       />
     </div>
   )
 }
 
-function EKGWaveform() {
-  const pathD =
-    "M0,60 L30,60 L38,15 L46,105 L54,15 L62,60 " +
-    "L100,60 L108,15 L116,105 L124,15 L132,60 " +
-    "L170,60 L178,15 L186,105 L194,15 L202,60 " +
-    "L240,60 L248,15 L256,105 L264,15 L272,60 " +
-    "L320,60"
+function PackageDelivery() {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hide all animated elements on mount
+      gsap.set(".pkg-el", { opacity: 0 })
+      gsap.set(".pkg-flap-l", { rotation: -45, transformOrigin: "bottom left" })
+      gsap.set(".pkg-flap-r", { rotation: 45, transformOrigin: "bottom right" })
+      gsap.set(".pkg-tape", { scaleX: 0, transformOrigin: "left center" })
+      gsap.set(".pkg-path", { strokeDashoffset: 200 })
+      gsap.set(".pkg-dest", { scale: 0, transformOrigin: "center center" })
+
+      const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.6 })
+
+      // Reset
+      tl.set(".pkg-el", { opacity: 0 })
+      tl.set(".pkg-flap-l", { rotation: -45, transformOrigin: "bottom left" })
+      tl.set(".pkg-flap-r", { rotation: 45, transformOrigin: "bottom right" })
+      tl.set(".pkg-tape", { scaleX: 0, transformOrigin: "left center" })
+      tl.set(".pkg-path", { strokeDashoffset: 200 })
+      tl.set(".pkg-dest", { scale: 0 })
+
+      // Fade in box body
+      tl.to(".pkg-box", { opacity: 1, duration: 0.3, ease: "power2.out" })
+
+      // Show flaps (open state)
+      tl.to(".pkg-flap-l, .pkg-flap-r", { opacity: 1, duration: 0.2 }, "<")
+
+      // Close flaps
+      tl.to(".pkg-flap-l", { rotation: 0, duration: 0.4, ease: "power2.inOut" }, "+=0.15")
+      tl.to(".pkg-flap-r", { rotation: 0, duration: 0.4, ease: "power2.inOut" }, "<")
+
+      // Draw tape across
+      tl.to(".pkg-tape", { opacity: 1, duration: 0.01 }, "+=0.1")
+      tl.to(".pkg-tape", { scaleX: 1, duration: 0.5, ease: "sine.inOut" })
+
+      // Brief hold
+      tl.addLabel("sealed", "+=0.3")
+
+      // Show and draw delivery path
+      tl.to(".pkg-path", { opacity: 1, duration: 0.01 }, "sealed")
+      tl.to(".pkg-path", { strokeDashoffset: 0, duration: 1.2, ease: "sine.inOut" }, "sealed")
+
+      // Destination marker arrives
+      tl.to(".pkg-dest", { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, "-=0.2")
+
+      // Destination glow pulse
+      tl.to(".pkg-dest-glow", { opacity: 1, scale: 1.8, duration: 0.5, ease: "power2.out" }, "-=0.1")
+      tl.to(".pkg-dest-glow", { opacity: 0, scale: 2.2, duration: 0.4 })
+
+      // Hold completed state
+      tl.addLabel("done", "+=0.8")
+
+      // Fade out everything
+      tl.to(".pkg-el", { opacity: 0, y: -4, duration: 0.4 }, "done")
+    }, containerRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <div className="w-80 md:w-96" aria-hidden="true">
+    <div
+      ref={containerRef}
+      className="w-80 md:w-96 flex flex-col items-center select-none"
+      aria-hidden="true"
+    >
       <svg
         width="100%"
-        viewBox="0 0 320 120"
-        aria-hidden="true"
+        viewBox="0 0 320 180"
+        fill="none"
         className="overflow-visible"
       >
-        {/* Faint baseline grid lines */}
-        {[30, 60, 90].map((y) => (
-          <line
-            key={y}
-            x1="0" y1={y} x2="320" y2={y}
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="1"
+        {/* ── Box body ── */}
+        <rect
+          className="pkg-el pkg-box"
+          x="40" y="50" width="70" height="55" rx="4"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="2"
+          fill="rgba(255,255,255,0.05)"
+        />
+
+        {/* ── Box flaps (left & right halves) ── */}
+        <line
+          className="pkg-el pkg-flap-l"
+          x1="40" y1="50" x2="75" y2="50"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+        <line
+          className="pkg-el pkg-flap-r"
+          x1="110" y1="50" x2="75" y2="50"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+
+        {/* ── Tape seal ── */}
+        <line
+          className="pkg-el pkg-tape"
+          x1="52" y1="50" x2="98" y2="50"
+          stroke="rgba(255,255,255,0.7)"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+
+        {/* ── Delivery path (dashed) ── */}
+        <path
+          className="pkg-el pkg-path"
+          d="M 115 77 C 150 77, 160 120, 200 120 S 250 90, 275 90"
+          stroke="rgba(255,255,255,0.4)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="6 4"
+          style={{ strokeDasharray: "200", strokeDashoffset: "200" }}
+        />
+
+        {/* ── Destination marker ── */}
+        <g className="pkg-el pkg-dest">
+          {/* Glow ring */}
+          <circle
+            className="pkg-dest-glow"
+            cx="275" cy="90" r="8"
+            fill="none"
+            stroke="rgba(255,255,255,0.4)"
+            strokeWidth="1.5"
+            opacity="0"
           />
-        ))}
-        {/* Main EKG path */}
-        <path
-          d={pathD}
-          fill="none"
-          stroke="rgba(255,255,255,0.9)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{
-            strokeDasharray: 900,
-            strokeDashoffset: 900,
-            animation: "ekg-draw 2.8s ease-out infinite",
-          }}
-        />
-        {/* Trailing glow duplicate */}
-        <path
-          d={pathD}
-          fill="none"
-          stroke="rgba(242,29,47,0.4)"
-          strokeWidth="6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          style={{
-            strokeDasharray: 900,
-            strokeDashoffset: 900,
-            animation: "ekg-draw 2.8s ease-out infinite",
-            filter: "blur(4px)",
-          }}
-        />
+          {/* Solid dot */}
+          <circle
+            cx="275" cy="90" r="5"
+            fill="rgba(255,255,255,0.9)"
+          />
+          {/* Inner checkmark */}
+          <path
+            d="M 271.5 90 L 274 92.5 L 278.5 87.5"
+            stroke="rgba(242,29,47,0.9)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
       </svg>
-      <div className="mt-4 font-[family-name:var(--font-data)] text-[10px] uppercase tracking-[0.2em] text-white/30 text-center">
-        Quality Output Signal
+
+      <div className="mt-2 font-[family-name:var(--font-data)] text-[10px] uppercase tracking-[0.2em] text-white/30 text-center">
+        Sealed &amp; Delivered
       </div>
     </div>
   )
@@ -151,15 +426,15 @@ const steps = [
     description:
       "You bring the vision. We engineer the exact specification — paper weight, color profile, finish type, and quantity. Nothing goes to press without a locked proof.",
     bg: "#1E2254",
-    Animation: RotatingCircles,
+    Animation: MonitorSkeleton,
   },
   {
     number: "02",
     title: "Press & Precision",
     description:
-      "HP Indigo 5500 and Heidelberg SpeedMaster guided by master hands. Every sheet inspected. Every color matched to the approved proof.",
+      "HP Indigo 5500, Heidelberg SpeedMaster and more top-of-the-line equipment guided by master hands. Every sheet inspected. Every color matched to the approved proof.",
     bg: "#111318",
-    Animation: ScanningLaser,
+    Animation: PrintingPage,
   },
   {
     number: "03",
@@ -167,7 +442,7 @@ const steps = [
     description:
       "Quality-checked, perfectly packaged, delivered on deadline. Prints built to last — because your brand deserves permanence, not just paper.",
     bg: "#F21D2F",
-    Animation: EKGWaveform,
+    Animation: PackageDelivery,
   },
 ]
 
