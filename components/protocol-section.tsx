@@ -143,36 +143,24 @@ function PrintingPage() {
       tl.set(".pp-el", { opacity: 0, y: 6 })
       tl.set(laser, { left: 0 })
 
-      // ── Six strokes — each sweeps the laser then reveals one element ──
+      // ── Three strokes — each sweeps the laser then reveals two elements ──
 
-      // Stroke 1 → letterhead bar
+      // Stroke 1 → letterhead bar + rule line
       tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
       tl.to(".pp-el-1", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.to(".pp-el-2", { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, "-=0.05")
       tl.set(laser, { left: 0 })
 
-      // Stroke 2 → rule line
-      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
-      tl.to(".pp-el-2", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
-      tl.set(laser, { left: 0 })
-
-      // Stroke 3 → text line cluster
+      // Stroke 2 → text lines + image block
       tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
       tl.to(".pp-el-3", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.to(".pp-el-4", { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, "-=0.05")
       tl.set(laser, { left: 0 })
 
-      // Stroke 4 → image block + text stub
-      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
-      tl.to(".pp-el-4", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
-      tl.set(laser, { left: 0 })
-
-      // Stroke 5 → footer
+      // Stroke 3 → footer + color swatches
       tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
       tl.to(".pp-el-5", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
-      tl.set(laser, { left: 0 })
-
-      // Stroke 6 → color swatch row
-      tl.to(laser, { left: "calc(100% - 2px)", duration: 1.5, ease: "sine.inOut" })
-      tl.to(".pp-el-6", { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "-=0.15")
+      tl.to(".pp-el-6", { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, "-=0.05")
       tl.set(laser, { left: 0 })
 
       // ── Hold fully-printed state, then fade everything out ──
