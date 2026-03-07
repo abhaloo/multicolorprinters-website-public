@@ -4,7 +4,13 @@ import { useState } from "react"
 
 const categories = ["All", "Digital", "Offset", "Design", "Packaging"]
 
-const projects = [
+type ImageProject = { title: string; category: string; image: string }
+type GradientProject = { title: string; category: string; gradient: string }
+type Project = ImageProject | GradientProject
+
+const projects: Project[] = [
+  { title: "Dnata Window Wrap", category: "Design", image: "/images/portfolio/dnata-window-wrap.webp" },
+  { title: "ZNZ Boutique Menu", category: "Digital", image: "/images/portfolio/znz-boutique-single-sheet-menu.webp" },
   { title: "Tourism Brochure Series", category: "Digital", gradient: "from-secondary to-accent" },
   { title: "Annual Report 2024", category: "Offset", gradient: "from-primary to-[#F25764]" },
   { title: "Spice Brand Identity", category: "Design", gradient: "from-accent to-secondary" },
@@ -52,9 +58,18 @@ export function PortfolioGallery() {
             key={project.title}
             className="group relative overflow-hidden rounded-xl"
           >
-            <div
-              className={`aspect-[4/3] bg-gradient-to-br ${project.gradient} transition-transform group-hover:scale-105`}
-            />
+            {"image" in project ? (
+              <img
+                src={project.image}
+                alt={project.title}
+                loading="lazy"
+                className="aspect-[4/3] w-full object-cover transition-transform group-hover:scale-105"
+              />
+            ) : (
+              <div
+                className={`aspect-[4/3] bg-gradient-to-br ${project.gradient} transition-transform group-hover:scale-105`}
+              />
+            )}
             <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6 md:opacity-0 transition-opacity md:group-hover:opacity-100">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">
                 {project.category}
