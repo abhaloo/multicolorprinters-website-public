@@ -5,7 +5,7 @@ import { InstagramIcon, FacebookIcon } from "@/components/social-icons"
 
 export function Footer() {
   return (
-    <footer className="bg-[#111318] text-gray-300 rounded-t-[4rem] overflow-hidden">
+    <footer className="bg-[#111318] text-gray-300 rounded-t-[2rem] overflow-hidden md:rounded-t-[4rem]">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo & Description */}

@@ -25,7 +25,7 @@ export function FloatingCTA() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-lg shadow-[#25D366]/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#25D366]/40 animate-in fade-in slide-in-from-bottom-4 duration-500 max-sm:p-3.5"
+      className="safe-area-bottom fixed bottom-6 right-4 z-50 flex items-center gap-2.5 rounded-full bg-[#25D366] px-5 py-3.5 text-white shadow-lg shadow-[#25D366]/30 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#25D366]/40 animate-in fade-in slide-in-from-bottom-4 duration-500 max-sm:p-3.5 sm:right-6"
     >
       <WhatsAppIcon className="h-6 w-6 shrink-0" />
       <span className="text-sm font-semibold max-sm:hidden">Chat with us</span>

@@ -240,14 +240,14 @@ const cards = [
 
 export function FeaturesSection() {
   return (
-    <section className="bg-[#F5F0EB] py-24">
+    <section className="bg-[#F5F0EB] py-14 md:py-24">
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-10 max-w-2xl md:mb-16">
           <span className="font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.22em] text-[#F21D2F]">
             What sets us apart
           </span>
-          <h2 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight text-[#111318] md:text-5xl">
+          <h2 className="mt-3 font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight text-[#111318] sm:text-4xl md:text-5xl">
             Built for precision.
             <br />
             Driven by craft.
@@ -259,7 +259,7 @@ export function FeaturesSection() {
           {cards.map(({ id, Widget, heading, descriptor }) => (
             <div
               key={id}
-              className="rounded-[2rem] border border-[#1E2254]/10 bg-white/70 p-8 shadow-sm backdrop-blur-sm"
+              className="rounded-[1.5rem] border border-[#1E2254]/10 bg-white/70 p-5 shadow-sm backdrop-blur-sm sm:rounded-[2rem] sm:p-8"
             >
               <Widget />
               <div className="mt-8 border-t border-[#1E2254]/10 pt-6">

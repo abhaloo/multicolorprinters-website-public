@@ -30,7 +30,7 @@ export function Navbar() {
     <>
       <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
         <nav
-          className="flex items-center gap-6 rounded-full px-6 py-3 pointer-events-auto bg-white/90 backdrop-blur-xl border border-[#1E2254]/10 shadow-lg shadow-[#111318]/8"
+          className="flex items-center gap-3 rounded-full px-4 py-2.5 pointer-events-auto bg-white/90 backdrop-blur-xl border border-[#1E2254]/10 shadow-lg shadow-[#111318]/8 sm:gap-6 sm:px-6 sm:py-3"
         >
           {/* Logo */}
           <Link href="/" className="shrink-0">
@@ -84,14 +84,6 @@ export function Navbar() {
         )}
         aria-hidden={!mobileOpen}
       >
-        <button
-          onClick={() => setMobileOpen(false)}
-          className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
-          aria-label="Close menu"
-        >
-          <X className="h-6 w-6" />
-        </button>
-
         {navLinks.map((link, i) => (
           <Link
             key={link.label}

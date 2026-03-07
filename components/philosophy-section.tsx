@@ -139,6 +139,8 @@ export function PhilosophySection() {
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches
+    const isTouch = window.matchMedia("(pointer: coarse)").matches
+    const skipAnimation = reducedMotion || isTouch
 
     function resize() {
       canvas.width = section.offsetWidth
@@ -146,7 +148,7 @@ export function PhilosophySection() {
       dotsRef.current = buildGrid(canvas.width, canvas.height)
 
       // Static fallback for reduced motion — draw once and exit
-      if (reducedMotion) {
+      if (skipAnimation) {
         ctx2d.clearRect(0, 0, canvas.width, canvas.height)
         for (const dot of dotsRef.current) {
           ctx2d.beginPath()
@@ -161,7 +163,7 @@ export function PhilosophySection() {
     ro.observe(section)
     resize()
 
-    if (reducedMotion) {
+    if (skipAnimation) {
       return () => {
         ctx.revert()
         ro.disconnect()
@@ -266,7 +268,7 @@ export function PhilosophySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-[#111318] py-32 md:py-40"
+      className="relative overflow-hidden bg-[#111318] py-16 sm:py-32 md:py-40"
     >
       {/* Elastic dot grid canvas — behind everything */}
       <canvas
@@ -290,13 +292,13 @@ export function PhilosophySection() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         {/* Counter-statement */}
-        <p className="philosophy-neutral font-[family-name:var(--font-heading)] text-base text-white/30 md:text-lg">
+        <p className="philosophy-neutral font-[family-name:var(--font-heading)] text-sm text-white/30 sm:text-base md:text-lg">
           Most print shops focus on: volume and speed. That&apos;s our bare minimum.
         </p>
 
         {/* Main manifesto */}
         <div className="philosophy-main mt-8">
-          <h2 className="font-[family-name:var(--font-drama)] italic font-black leading-none text-white text-5xl md:text-7xl lg:text-[6.5rem]">
+          <h2 className="font-[family-name:var(--font-drama)] italic font-black leading-none text-white text-4xl sm:text-5xl md:text-7xl lg:text-[6.5rem]">
             {words.map((word, i) => (
               <span
                 key={`${word}-${i}`}
@@ -313,7 +315,7 @@ export function PhilosophySection() {
         </div>
 
         {/* Three pillars */}
-        <div className="philosophy-pillars mt-20 grid gap-8 md:grid-cols-3">
+        <div className="philosophy-pillars mt-10 grid gap-5 sm:mt-20 sm:gap-8 md:grid-cols-3">
           {[
             {
               number: "01",

@@ -49,7 +49,7 @@ function MonitorSkeleton() {
     >
       {/* Monitor body */}
       <div
-        className="relative rounded-[12px] p-[10px] w-64 md:w-80"
+        className="relative rounded-[12px] p-[10px] w-56 sm:w-64 md:w-80"
         style={{
           background: "linear-gradient(160deg, #22263a, #191c2d)",
           border: "2px solid rgba(255,255,255,0.07)",
@@ -173,7 +173,7 @@ function PrintingPage() {
   return (
     <div
       ref={containerRef}
-      className="relative w-80 h-64 md:w-96 md:h-72 select-none"
+      className="relative w-full max-w-80 h-56 sm:h-64 md:w-96 md:max-w-96 md:h-72 select-none"
       aria-hidden="true"
     >
       {/* ── Dot grid background ── */}
@@ -318,7 +318,7 @@ function PackageDelivery() {
   return (
     <div
       ref={containerRef}
-      className="w-80 md:w-96 flex flex-col items-center select-none"
+      className="w-full max-w-80 md:max-w-96 flex flex-col items-center select-none"
       aria-hidden="true"
     >
       <svg
@@ -485,10 +485,10 @@ export function ProtocolSection() {
             ref={(el) => {
               cardRefs.current[i] = el
             }}
-            className="sticky top-0 flex min-h-[100dvh] items-center rounded-t-[3rem]"
+            className="sticky top-0 flex min-h-0 items-center rounded-t-[2rem] md:min-h-[100dvh] md:rounded-t-[3rem]"
             style={{ backgroundColor: bg, willChange: "transform, opacity" }}
           >
-            <div className="mx-auto w-full max-w-7xl px-6 py-20 md:py-32">
+            <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 sm:py-20 md:py-32">
               <div className="grid items-center gap-12 md:grid-cols-2 md:gap-20">
                 {/* Animation */}
                 <div className="flex items-center justify-center py-8 md:py-0">
@@ -500,7 +500,7 @@ export function ProtocolSection() {
                   <span className="font-[family-name:var(--font-data)] text-sm text-white/60">
                     {number}
                   </span>
-                  <h3 className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold text-white md:text-5xl">
+                  <h3 className="mt-3 font-[family-name:var(--font-heading)] text-2xl font-bold text-white sm:text-4xl md:text-5xl">
                     {title}
                   </h3>
                   <p className="mt-5 max-w-md text-base leading-relaxed text-white/90">

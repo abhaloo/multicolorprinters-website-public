@@ -142,6 +142,13 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
     background-size: 300px 300px;
   }
+
+  /* iOS safe-area support for fixed bottom elements */
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .safe-area-bottom {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
 }
 
 /* Hero staggered entrance — plays once on load */
@@ -181,6 +188,31 @@
   .hero-stagger {
     animation: none;
     opacity: 1;
+  }
+}
+
+/* Hero gradient — heavier dark zone on mobile for text legibility */
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(
+      to top,
+      #111318 0%,
+      rgba(17,19,24,0.85) 45%,
+      rgba(17,19,24,0.35) 75%,
+      rgba(17,19,24,0.15) 100%
+    );
+  }
+
+  @media (min-width: 640px) {
+    .hero-gradient {
+      background: linear-gradient(
+        to top,
+        #111318 0%,
+        rgba(17,19,24,0.75) 40%,
+        rgba(17,19,24,0.25) 75%,
+        rgba(17,19,24,0.1) 100%
+      );
+    }
   }
 }
 

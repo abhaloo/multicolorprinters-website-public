@@ -56,7 +56,7 @@ export function ClientsStrip() {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex items-center">
               {brands.map((brand) => (
-                <div key={brand.name} className="flex-[0_0_auto] px-8">
+                <div key={brand.name} className="flex-[0_0_auto] px-4 sm:px-8">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={brand.logo}

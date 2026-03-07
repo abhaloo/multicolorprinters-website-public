@@ -49,22 +49,19 @@ export function HeroSection() {
 
       {/* Gradient overlay — heavy dark bottom for text legibility */}
       <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(to top, #111318 0%, rgba(17,19,24,0.75) 40%, rgba(17,19,24,0.25) 75%, rgba(17,19,24,0.1) 100%)"
-        }}
+        className="absolute inset-0 hero-gradient"
         aria-hidden="true"
       />
 
       {/* Content — bottom-left */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:pb-24">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 sm:px-6 md:pb-24">
         <div className="max-w-2xl">
 
           {/* Pre-label */}
           <div className="hero-anim mb-5 opacity-0 w-fit">
             <div className="flex items-center gap-3 rounded-full border border-white/15 bg-white/10 backdrop-blur-md px-4 py-2">
               <span className="h-px w-6 bg-[#F21D2F]" aria-hidden="true" />
-              <span className="font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.22em] text-white">
+              <span className="font-[family-name:var(--font-data)] text-xs uppercase tracking-[0.18em] sm:text-[11px] sm:tracking-[0.22em] text-white">
                 Zanzibar&apos;s Master Press Since 1995
               </span>
             </div>
@@ -72,10 +69,10 @@ export function HeroSection() {
 
           {/* Two-part headline */}
           <h1 className="flex flex-col">
-            <span className="hero-anim font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-wider text-white/60 opacity-0 md:text-2xl">
+            <span className="hero-anim font-[family-name:var(--font-heading)] text-base font-bold uppercase tracking-wider text-white/60 opacity-0 sm:text-xl md:text-2xl">
               Our ink becomes your
             </span>
-            <span className="hero-anim font-[family-name:var(--font-drama)] italic font-black leading-none text-white opacity-0 text-[4.5rem] md:text-[7rem] lg:text-[8.5rem]">
+            <span className="hero-anim font-[family-name:var(--font-drama)] italic font-black leading-none text-white opacity-0 text-[2.75rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[8.5rem]">
               Identity.
             </span>
           </h1>
@@ -107,18 +104,18 @@ export function HeroSection() {
           </div>
 
           {/* Stats row */}
-          <div className="hero-anim mt-8 opacity-0">
-            <div className="inline-flex flex-wrap gap-8 rounded-[1.5rem] border border-white/10 bg-white/10 backdrop-blur-md px-6 py-5">
+          <div className="hero-anim mt-6 opacity-0 sm:mt-8">
+            <div className="grid grid-cols-3 gap-3 sm:inline-flex sm:gap-8 rounded-[1.5rem] border border-white/10 bg-white/10 backdrop-blur-md px-4 py-3 sm:px-6 sm:py-5">
               {[
                 { value: companyInfo.stats.yearsExperience, label: "Years of Craft" },
                 { value: companyInfo.stats.projectsDelivered, label: "Orders Pressed" },
                 { value: companyInfo.stats.businessesServed, label: "Brands Served" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white md:text-3xl">
+                  <div className="font-[family-name:var(--font-heading)] text-lg font-bold text-white sm:text-2xl md:text-3xl">
                     {stat.value}
                   </div>
-                  <div className="font-[family-name:var(--font-data)] text-[10px] uppercase tracking-widest text-white/60">
+                  <div className="font-[family-name:var(--font-data)] text-[9px] uppercase tracking-wider text-white/60 sm:text-[10px] sm:tracking-widest">
                     {stat.label}
                   </div>
                 </div>

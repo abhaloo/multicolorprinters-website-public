@@ -5,9 +5,9 @@ import { companyInfo } from "@/lib/data"
 
 export function CTASection() {
   return (
-    <section className="bg-secondary py-20">
+    <section className="bg-secondary py-12 sm:py-20">
       <div className="mx-auto max-w-4xl px-6 text-center">
-        <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold text-white md:text-4xl">
+        <h2 className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white sm:text-3xl md:text-4xl">
           Ready to Start Your Project?
         </h2>
         <p className="mt-4 text-lg text-accent">
