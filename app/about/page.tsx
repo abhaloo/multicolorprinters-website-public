@@ -10,7 +10,7 @@ import { AnimateIn } from "@/components/animate-in"
 export const metadata: Metadata = {
   title: "About Us | Multi Color Printers",
   description:
-    "Learn about Multi Color Printers — Zanzibar's trusted print partner with 25+ years of experience and industry-leading equipment.",
+    `Learn about Multi Color Printers — Zanzibar's trusted print partner with ${companyInfo.stats.yearsExperience} years of experience and industry-leading equipment.`,
 }
 
 const stats = [
@@ -79,7 +79,7 @@ export default function AboutPage() {
                 <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
                   <p>
                     Multi Color Printers has been at the heart of Zanzibar&apos;s printing
-                    industry for over 25 years. What started as a small print shop has
+                    industry for over {new Date().getFullYear() - 1995} years. What started as a small print shop has
                     grown into the island&apos;s most trusted commercial printing house,
                     serving some of the region&apos;s leading hotels, government bodies,
                     and businesses across East Africa.

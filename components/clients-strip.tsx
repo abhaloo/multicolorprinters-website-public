@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const brands = [
   { name: "Sea Cliff Resort & Spa", logo: "/images/client_logos/SEA-CLIFF-RESORTS-AND-SPA-ZANZIBAR-LOGO.webp" },
-  { name: "The Residence Zanzibar", logo: "/images/client_logos/the-residence-zanzibar.svg" },
+  { name: "The Residence Zanzibar", logo: "/images/client_logos/the-residence-zanzibar.svg", invert: true },
   { name: "ZRA — Zanzibar Revenue Authority", logo: "/images/client_logos/zra.webp" },
   { name: "Zanzibar Ports Corporation", logo: "/images/client_logos/zanzibar-ports-authority.webp" },
   { name: "Neptune Pwani Beach Resort & Spa", logo: "/images/client_logos/neptune-hotel.webp" },
@@ -17,9 +17,9 @@ const brands = [
   { name: "Commission for Tourism — ZCT", logo: "/images/client_logos/zct-logo.webp" },
   { name: "Zanzibar University", logo: "/images/client_logos/zanzibar-university.webp" },
   { name: "RIU Palace", logo: "/images/client_logos/riu.svg" },
-  { name: "Zuri White Sands", logo: "/images/client_logos/zuri-white-logo.webp" },
+  { name: "Zuri White Sands", logo: "/images/client_logos/zuri-white-logo.webp", invert: true },
   { name: "Sultan Sands Island Hotel", logo: "/images/client_logos/sultan-sands-logo.avif" },
-  { name: "Safari Blue", logo: "/images/client_logos/safari-blue-logo.webp" },
+  { name: "Safari Blue", logo: "/images/client_logos/safari-blue-logo.webp", invert: true },
   { name: "Zanzibar Submarine", logo: "/images/client_logos/Logo-Zanzibar-submarine-outline.svg" },
 ]
 
@@ -61,7 +61,7 @@ export function ClientsStrip() {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="h-12 w-auto max-w-[160px] object-contain grayscale opacity-40 transition-all hover:grayscale-0 hover:opacity-100"
+                    className={`h-12 w-auto max-w-[160px] object-contain grayscale opacity-40 transition-all hover:grayscale-0 hover:opacity-100${brand.invert ? " invert" : ""}`}
                   />
                 </div>
               ))}

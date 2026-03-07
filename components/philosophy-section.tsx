@@ -56,7 +56,10 @@ function buildGrid(width: number, height: number): Dot[] {
 export function PhilosophySection() {
   const sectionRef = useRef<HTMLElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const craftRef = useRef<HTMLSpanElement>(null)
   const mouseRef = useRef({ x: -9999, y: -9999 })
+  const craftPosRef = useRef({ x: -9999, y: -9999 })
+  const cursorInSectionRef = useRef(false)
   const dotsRef = useRef<Dot[]>([])
   const rafRef = useRef<number>(0)
 
@@ -169,12 +172,26 @@ export function PhilosophySection() {
     function tick() {
       if (!canvas || !ctx2d) return
       const { width, height } = canvas
-      const { x: mx, y: my } = mouseRef.current
+
+      // Update craft word position each frame (accounts for GSAP scroll animation)
+      if (craftRef.current) {
+        const craftRect = craftRef.current.getBoundingClientRect()
+        const sectionRect = section.getBoundingClientRect()
+        craftPosRef.current = {
+          x: craftRect.left + craftRect.width / 2 - sectionRect.left,
+          y: craftRect.top + craftRect.height / 2 - sectionRect.top,
+        }
+      }
+
+      // Active magnetic point: cursor when inside section, craft word when outside
+      const active = cursorInSectionRef.current ? mouseRef.current : craftPosRef.current
+      const mx = active.x
+      const my = active.y
 
       ctx2d.clearRect(0, 0, width, height)
 
       for (const dot of dotsRef.current) {
-        // Vector from cursor to dot (repulsion direction)
+        // Vector from magnetic point to dot (repulsion direction)
         const dx = dot.x - mx
         const dy = dot.y - my
         const dist = Math.sqrt(dx * dx + dy * dy)
@@ -222,6 +239,7 @@ export function PhilosophySection() {
     /* ── Mouse tracking (section-relative coordinates) ── */
     function handleMouseMove(e: MouseEvent) {
       const rect = section.getBoundingClientRect()
+      cursorInSectionRef.current = true
       mouseRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
@@ -229,6 +247,7 @@ export function PhilosophySection() {
     }
 
     function handleMouseLeave() {
+      cursorInSectionRef.current = false
       mouseRef.current = { x: -9999, y: -9999 }
     }
 
@@ -284,7 +303,7 @@ export function PhilosophySection() {
                 className="manifesto-word mr-[0.2em] inline-block"
               >
                 {word === "craft." ? (
-                  <span className="text-[#F21D2F]">{word}</span>
+                  <span ref={craftRef} className="text-[#F21D2F]">{word}</span>
                 ) : (
                   word
                 )}

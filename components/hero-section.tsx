@@ -32,12 +32,20 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative flex h-[100dvh] min-h-[600px] items-end overflow-hidden"
     >
-      {/* Full-bleed background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero-printing.webp')" }}
+      {/* Full-bleed background video */}
+      {/* suppressHydrationWarning: React SSR omits `muted` (it's a DOM property, not an HTML attribute) causing a benign server/client mismatch */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/images/hero-printing.webp"
         aria-hidden="true"
-      />
+        suppressHydrationWarning
+      >
+        <source src="/videos/hero-bg.mp4" type="video/mp4" />
+      </video>
 
       {/* Gradient overlay — heavy dark bottom for text legibility */}
       <div

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { navLinks, companyInfo } from "@/lib/data"
@@ -47,12 +48,14 @@ export function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="flex items-center gap-[2px]">
-              <div className="h-5 w-[5px] rounded-full bg-[#F21D2F]" />
-              <div className="h-5 w-[5px] rounded-full bg-[#1E2254]" />
-              <div className="h-5 w-[5px] rounded-full bg-[#9395BF]" />
-              <div className="h-5 w-[5px] rounded-full bg-[#F25764]" />
-            </div>
+            <Image
+              src="/images/logo.gif"
+              alt={companyInfo.name}
+              width={32}
+              height={32}
+              className="h-8 w-auto"
+              unoptimized
+            />
             <span
               className={cn(
                 "font-[family-name:var(--font-heading)] text-sm font-bold tracking-tight transition-colors duration-500",
