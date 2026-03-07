@@ -5,7 +5,7 @@ import { InstagramIcon, FacebookIcon } from "@/components/social-icons"
 
 export function Footer() {
   return (
-    <footer className="bg-[#1a1a2e] text-gray-300">
+    <footer className="bg-[#111318] text-gray-300 rounded-t-[4rem] overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo & Description */}
@@ -120,12 +120,22 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Copyright Bar */}
+      {/* Copyright & Status Bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-4">
-          <p className="text-center text-xs text-gray-500">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 sm:flex-row">
+          <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
           </p>
+          {/* System Operational status indicator */}
+          <div className="flex items-center gap-2" aria-label="System status: operational">
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            <span className="font-[family-name:var(--font-data)] text-[10px] uppercase tracking-[0.18em] text-emerald-400/80">
+              System Operational
+            </span>
+          </div>
         </div>
       </div>
     </footer>

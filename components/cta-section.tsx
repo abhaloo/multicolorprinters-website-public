@@ -14,16 +14,16 @@ export function CTASection() {
           Get a free quote today and let us bring your vision to life with exceptional print quality.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button
-            asChild
-            size="lg"
-            className="btn-cta bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
+          <Link
+            href="/contact"
+            className="btn-magnetic inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-4 text-base font-semibold shadow-lg shadow-primary/25"
           >
-            <Link href="/contact">
+            <span className="btn-slide-layer bg-[#d1182a]" aria-hidden="true" />
+            <span className="relative flex items-center gap-2">
               Request a Free Quote
-              <ArrowRight className="ml-2 h-5 w-5 cta-arrow-icon" />
-            </Link>
-          </Button>
+              <ArrowRight className="h-5 w-5" />
+            </span>
+          </Link>
           <Button
             asChild
             size="lg"

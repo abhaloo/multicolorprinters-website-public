@@ -1,183 +1,119 @@
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { companyInfo } from "@/lib/data"
-import { CountUp } from "@/components/count-up"
+"use client"
 
-const trustPoints = [
-  "Fast Turnaround",
-  "Premium Quality",
-  "Free Proofing",
-]
+import { useLayoutEffect, useRef } from "react"
+import Link from "next/link"
+import gsap from "gsap"
+import { companyInfo } from "@/lib/data"
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".hero-anim",
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          stagger: 0.08,
+          ease: "power3.out",
+          delay: 0.3,
+        }
+      )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="relative overflow-hidden bg-secondary pt-24 pb-0 md:pt-32 md:pb-0">
-      {/* Gradient orbs for visual depth on mobile — static to avoid GPU repaints */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden lg:hidden" aria-hidden="true">
-        <div className="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/15 blur-3xl" />
-        <div className="absolute -left-20 bottom-10 h-60 w-60 rounded-full bg-accent/20 blur-3xl" />
-      </div>
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left Content */}
-          <div className="flex flex-col gap-8 py-12 lg:py-20">
-            {/* Badge */}
-            <div className="hero-stagger hero-stagger-1 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-[#f5f5f0] backdrop-blur-sm px-4 py-1.5">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F25764] opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-black">
-                Zanzibar&apos;s trusted print press since 1995
-              </span>
-            </div>
+    <section
+      ref={sectionRef}
+      className="relative flex h-[100dvh] min-h-[600px] items-end overflow-hidden"
+    >
+      {/* Full-bleed background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/hero-printing.webp')" }}
+        aria-hidden="true"
+      />
 
-            {/* Headline */}
-            <div className="hero-stagger hero-stagger-2 flex flex-col gap-4">
-              <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight text-secondary-foreground md:text-5xl lg:text-6xl text-balance">
-                Your Vision,{" "}
-                <span className="text-primary">Perfectly</span>{" "}
-                Printed
-              </h1>
-              <p className="max-w-lg text-lg leading-relaxed text-accent">
-                From business cards to large-format banners to billboards, we deliver
-                exceptional commercial printing with precision color
-                matching and unmatched quality.
-              </p>
-            </div>
+      {/* Gradient overlay — heavy dark bottom for text legibility */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(to top, #111318 0%, rgba(17,19,24,0.75) 40%, rgba(17,19,24,0.25) 75%, rgba(17,19,24,0.1) 100%)"
+        }}
+        aria-hidden="true"
+      />
 
-            {/* CTA Buttons */}
-            <div className="hero-stagger hero-stagger-3 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Button
-                asChild
-                size="lg"
-                className="btn-cta bg-primary text-primary-foreground hover:bg-[#d1182a] font-semibold px-8 py-6 text-base shadow-lg shadow-primary/25"
-              >
-                <Link href="/contact">
-                  Request a Free Quote
-                  <ArrowRight className="ml-2 h-5 w-5 cta-arrow-icon" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="ghost"
-                className="text-accent hover:text-secondary-foreground hover:bg-accent/10 font-medium px-8 py-6 text-base"
-              >
-                <Link href="/portfolio">View Our Work</Link>
-              </Button>
-            </div>
+      {/* Content — bottom-left */}
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 md:pb-24">
+        <div className="max-w-2xl">
 
-            {/* Trust Indicators */}
-            <div className="hero-stagger hero-stagger-4 flex flex-wrap items-center gap-x-6 gap-y-2">
-              {trustPoints.map((point) => (
-                <span
-                  key={point}
-                  className="flex items-center gap-2 text-sm font-medium text-accent"
-                >
-                  <CheckCircle2 className="h-4 w-4 text-[#F25764]" />
-                  {point}
-                </span>
-              ))}
-            </div>
+          {/* Pre-label */}
+          <div className="hero-anim mb-5 flex items-center gap-3 opacity-0">
+            <span className="h-px w-8 bg-[#F21D2F]" aria-hidden="true" />
+            <span className="font-[family-name:var(--font-data)] text-[11px] uppercase tracking-[0.22em] text-[#F21D2F]">
+              Zanzibar&apos;s Master Press Since 1995
+            </span>
           </div>
 
-          {/* Right Image */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-2xl lg:rounded-t-2xl lg:rounded-b-none">
-              <Image
-                src="/images/hero-printing.webp"
-                alt="Premium printed marketing materials — brochures, business cards, and packaging"
-                width={700}
-                height={600}
-                className="h-full w-full object-cover"
-                priority
-              />
-              {/* Overlay card */}
-              <div className="absolute bottom-6 left-6 right-6 rounded-xl bg-card/95 p-5 backdrop-blur-sm shadow-xl hidden lg:block">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      Trusted by
-                    </span>
-                    <CountUp
-                      value={companyInfo.stats.businessesServed}
-                      className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground"
-                    />
-                    <span className="text-[10px] font-medium text-muted-foreground">Businesses</span>
-                  </div>
-                  <div className="h-10 w-px bg-border" />
-                  <div className="flex flex-col items-center">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      Experience
-                    </span>
-                    <CountUp
-                      value={companyInfo.stats.yearsExperience}
-                      className="font-[family-name:var(--font-heading)] text-xl font-bold text-foreground"
-                    />
-                    <span className="text-[10px] font-medium text-muted-foreground">Years</span>
-                  </div>
-                  <div className="h-10 w-px bg-border" />
-                  <div className="flex flex-col items-end">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                      Delivered
-                    </span>
-                    <CountUp
-                      value={companyInfo.stats.projectsDelivered}
-                      className="font-[family-name:var(--font-heading)] text-xl font-bold text-primary"
-                    />
-                    <span className="text-[10px] font-medium text-muted-foreground">Orders</span>
-                  </div>
+          {/* Two-part headline */}
+          <h1 className="flex flex-col">
+            <span className="hero-anim font-[family-name:var(--font-heading)] text-xl font-bold uppercase tracking-wider text-white/60 opacity-0 md:text-2xl">
+              Ink becomes
+            </span>
+            <span className="hero-anim font-[family-name:var(--font-drama)] italic font-black leading-none text-white opacity-0 text-[4.5rem] md:text-[7rem] lg:text-[8.5rem]">
+              Legacy.
+            </span>
+          </h1>
+
+          {/* Descriptor */}
+          <p className="hero-anim mt-5 max-w-md text-base leading-relaxed text-white/70 opacity-0 md:text-lg">
+            Industrial precision. Editorial elegance. Every print a permanent mark of your brand&apos;s story.
+          </p>
+
+          {/* CTAs */}
+          <div className="hero-anim mt-8 flex flex-col gap-4 opacity-0 sm:flex-row sm:items-center">
+            <Link
+              href="/contact"
+              className="btn-magnetic inline-flex items-center justify-center rounded-full bg-[#F21D2F] px-8 py-4 text-sm font-semibold text-white shadow-[0_4px_24px_rgba(242,29,47,0.35)] w-fit"
+            >
+              <span className="btn-slide-layer bg-[#d1182a]" aria-hidden="true" />
+              <span className="relative">Request a Quote</span>
+            </Link>
+
+            <a
+              href={`https://wa.me/${companyInfo.whatsapp.replace(/[^\d]/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors hover:-translate-y-px"
+            >
+              <span>Chat with Us</span>
+              <span className="text-[#F21D2F]" aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+
+          {/* Stats row */}
+          <div className="hero-anim mt-10 flex flex-wrap gap-8 opacity-0 border-t border-white/15 pt-8">
+            {[
+              { value: companyInfo.stats.yearsExperience, label: "Years of Craft" },
+              { value: companyInfo.stats.projectsDelivered, label: "Orders Pressed" },
+              { value: companyInfo.stats.businessesServed, label: "Brands Served" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <div className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white md:text-3xl">
+                  {stat.value}
+                </div>
+                <div className="font-[family-name:var(--font-data)] text-[10px] uppercase tracking-widest text-white/45">
+                  {stat.label}
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-
-        {/* Mobile-only trust stats */}
-        <div className="hero-stagger hero-stagger-4 flex justify-between gap-4 pb-8 lg:hidden">
-          <div className="flex flex-col items-center">
-            <CountUp
-              value={companyInfo.stats.businessesServed}
-              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white"
-            />
-            <span className="text-[10px] font-medium text-accent">Businesses</span>
-          </div>
-          <div className="h-10 w-px bg-accent/30" />
-          <div className="flex flex-col items-center">
-            <CountUp
-              value={companyInfo.stats.yearsExperience}
-              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-white"
-            />
-            <span className="text-[10px] font-medium text-accent">Years</span>
-          </div>
-          <div className="h-10 w-px bg-accent/30" />
-          <div className="flex flex-col items-center">
-            <CountUp
-              value={companyInfo.stats.projectsDelivered}
-              className="font-[family-name:var(--font-heading)] text-2xl font-bold text-primary"
-            />
-            <span className="text-[10px] font-medium text-accent">Orders</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom wave/separator */}
-      <div className="relative mt-0">
-        <svg
-          viewBox="0 0 1440 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full text-background"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 60V20C240 0 480 0 720 20C960 40 1200 40 1440 20V60H0Z"
-            fill="currentColor"
-          />
-        </svg>
       </div>
     </section>
   )

@@ -37,7 +37,7 @@ export function PortfolioPreview() {
           {projects.map((project, index) => (
             <AnimateIn key={project.title} variant="scale-in" delay={index * 100}>
               <div
-                className="group relative overflow-hidden rounded-xl"
+                className="group relative overflow-hidden rounded-[1.5rem]"
               >
                 {/* Gradient placeholder */}
                 <div

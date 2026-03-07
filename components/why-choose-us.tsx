@@ -51,7 +51,7 @@ export function WhyChooseUs() {
             {values.map((value, index) => (
               <AnimateIn key={value.title} variant="fade-up" delay={index * 100}>
                 <div
-                  className="rounded-xl border border-border bg-background p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
+                  className="rounded-[1.5rem] border border-border bg-background p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
                 >
                   <div className="mb-3 flex items-center justify-between">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary/10">
