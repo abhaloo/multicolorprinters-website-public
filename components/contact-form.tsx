@@ -52,6 +52,10 @@ const validationMessages: Record<string, string> = {
 function isFieldValid(name: string, value: string): boolean {
   if (!value || value.trim() === "") return false
   if (name === "email") return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  if (name === "phone") {
+    const digits = value.replace(/\D/g, "")
+    return digits.length >= 10
+  }
   return true
 }
 
@@ -60,13 +64,27 @@ interface FieldState {
   valid: boolean
 }
 
+const errorMessages: Record<string, string> = {
+  phone: "Please enter at least 10 digits",
+}
+
 function ValidationFeedback({ field, name }: { field: FieldState | undefined; name: string }) {
-  if (!field?.touched || !field.valid) return null
-  return (
-    <p className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 animate-in fade-in slide-in-from-bottom-1 duration-300">
-      {validationMessages[name] || "Looks good"}
-    </p>
-  )
+  if (!field?.touched) return null
+  if (field.valid) {
+    return (
+      <p className="mt-1 flex items-center gap-1 text-xs font-medium text-green-600 animate-in fade-in slide-in-from-bottom-1 duration-300">
+        {validationMessages[name] || "Looks good"}
+      </p>
+    )
+  }
+  if (errorMessages[name]) {
+    return (
+      <p className="mt-1 text-xs font-medium text-red-500 animate-in fade-in slide-in-from-bottom-1 duration-300">
+        {errorMessages[name]}
+      </p>
+    )
+  }
+  return null
 }
 
 function CheckIcon({ field, className }: { field: FieldState | undefined; className?: string }) {
@@ -153,6 +171,11 @@ export function ContactForm() {
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       toast.error("Please enter a valid email address.")
+      return
+    }
+
+    if (data.phone && data.phone.replace(/\D/g, "").length < 10) {
+      toast.error("Phone number must be at least 10 digits.")
       return
     }
 
@@ -263,10 +286,15 @@ export function ContactForm() {
               id="phone"
               name="phone"
               type="tel"
+              inputMode="numeric"
+              pattern="[\d\s\+\-\(\)]{10,}"
               className={cn(baseInputClasses, "pr-10", getFieldClasses("phone"))}
               placeholder="+255 xxx xxx xxx"
               onBlur={handleFieldBlur}
-              onChange={handleFieldChange}
+              onChange={(e) => {
+                e.target.value = e.target.value.replace(/[^\d\s\+\-()]/g, "")
+                handleFieldChange(e)
+              }}
             />
             <CheckIcon field={fieldState.phone} />
           </div>
