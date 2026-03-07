@@ -8,7 +8,9 @@
       "Bash(node:*)",
       "Bash(python:*)",
       "Bash(mv:*)",
-      "Bash(npx tailwindcss:*)"
+      "Bash(npx tailwindcss:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)"
     ]
   }
 }
