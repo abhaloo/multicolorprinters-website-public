@@ -39,3 +39,6 @@ Multi Color Printers website — a commercial printing company based in Zanzibar
 ## Path Aliases
 
 `@/*` maps to project root (e.g., `@/components/navbar`, `@/lib/data`)
+
+## Coding Practices
+Don't commit anything to github directly
