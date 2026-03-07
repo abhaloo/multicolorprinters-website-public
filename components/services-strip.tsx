@@ -1,47 +1,36 @@
 import Image from "next/image"
 import { AnimateIn } from "@/components/animate-in"
 
-// NOTE: gradient values must remain as complete static strings (not assembled from parts)
-// so Tailwind's scanner can detect them. image paths are placeholder scaffolding for when
-// real photos are provided — see ServiceThumbnail above.
 const services = [
   {
     label: "Business Cards",
     image: "/images/services/business-cards.webp",
-    gradient: "from-blue-500 to-indigo-600",
   },
   {
     label: "Brochures",
     image: "/images/services/brochures.webp",
-    gradient: "from-emerald-500 to-teal-600",
   },
   {
     label: "Large Format",
     image: "/images/services/large-format.webp",
-    gradient: "from-orange-500 to-red-600",
   },
   {
     label: "Packaging",
     image: "/images/services/packaging.webp",
-    gradient: "from-violet-500 to-purple-600",
   },
   {
     label: "Stationery",
     image: "/images/services/stationery.webp",
-    gradient: "from-cyan-500 to-blue-600",
   },
   {
     label: "Digital Print",
     image: "/images/services/digital-print.webp",
-    gradient: "from-rose-500 to-pink-600",
   },
 ]
 
-type Service = typeof services[number]
+type Service = (typeof services)[number]
 
-// Ready to use when photos land in public/images/services/
-// Swap <ServiceFallback service={service} /> for <ServiceThumbnail service={service} />
-function ServiceThumbnail({ service }: { service: Service }) {
+function ServiceIcon({ service }: { service: Service }) {
   return (
     <div className="relative h-16 w-16 overflow-hidden rounded-xl">
       <Image
@@ -51,18 +40,6 @@ function ServiceThumbnail({ service }: { service: Service }) {
         height={64}
         className="h-full w-full object-cover"
       />
-    </div>
-  )
-}
-
-function ServiceFallback({ service }: { service: Service }) {
-  return (
-    <div
-      className={`flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br ${service.gradient}`}
-    >
-      <span className="text-lg font-bold text-white">
-        {service.label.charAt(0)}
-      </span>
     </div>
   )
 }
@@ -89,7 +66,7 @@ export function ServicesStrip() {
                 <div
                   className="group flex flex-col items-center gap-3 rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
                 >
-                  <ServiceFallback service={service} />
+                  <ServiceIcon service={service} />
                   <span className="text-sm font-semibold text-foreground text-center">
                     {service.label}
                   </span>
