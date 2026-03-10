@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
 import { companyInfo, navLinks, servicesList } from "@/lib/data"
 import { InstagramIcon, FacebookIcon } from "@/components/social-icons"
@@ -10,21 +11,14 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo & Description */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1">
-                <div className="h-8 w-2 rounded-sm bg-primary" />
-                <div className="h-8 w-2 rounded-sm bg-secondary" />
-                <div className="h-8 w-2 rounded-sm bg-accent" />
-                <div className="h-8 w-2 rounded-sm bg-[#F25764]" />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-[family-name:var(--font-heading)] text-lg font-bold tracking-tight text-white">
-                  Multi Color
-                </span>
-                <span className="font-[family-name:var(--font-heading)] text-xs font-medium uppercase tracking-widest text-gray-400">
-                  Printers
-                </span>
-              </div>
+            <div className="bg-white rounded-lg p-3 w-fit">
+              <Image
+                src="/images/logo-company.svg"
+                alt="Multi-Color Printers"
+                width={100}
+                height={50}
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
               Zanzibar&apos;s trusted commercial printing partner. Delivering exceptional print quality with over 25 years of industry experience.

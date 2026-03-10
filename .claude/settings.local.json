@@ -10,7 +10,8 @@
       "Bash(mv:*)",
       "Bash(npx tailwindcss:*)",
       "Bash(ls:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(find \"/c/Users/Adeel/Desktop/MCP Connect/multicolorprinters-website\" -maxdepth 3 -name \"*logo*\" -type f 2>/dev/null | grep -v node_modules)"
     ]
   }
 }

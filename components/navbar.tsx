@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { navLinks } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { Logo } from "@/components/logo"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -34,7 +34,14 @@ export function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <Logo scale={0.65} />
+            <Image
+              src="/images/logo-company.svg"
+              alt="Multi-Color Printers"
+              width={120}
+              height={60}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop nav links */}
