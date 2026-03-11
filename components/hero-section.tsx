@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react"
 import Link from "next/link"
 import gsap from "gsap"
+import { Trophy } from "lucide-react"
 import { companyInfo } from "@/lib/data"
 
 export function HeroSection() {
@@ -105,7 +106,7 @@ export function HeroSection() {
 
           {/* Stats row */}
           <div className="hero-anim mt-6 opacity-0 sm:mt-8">
-            <div className="grid grid-cols-3 gap-3 sm:inline-flex sm:gap-8 rounded-[1.5rem] border border-white/10 bg-white/10 backdrop-blur-md px-4 py-3 sm:px-6 sm:py-5">
+            <div className="grid grid-cols-4 gap-3 sm:inline-flex sm:gap-8 rounded-[1.5rem] border border-white/10 bg-white/10 backdrop-blur-md px-4 py-3 sm:px-6 sm:py-5">
               {[
                 { value: companyInfo.stats.yearsExperience, label: "Years of Craft" },
                 { value: companyInfo.stats.projectsDelivered, label: "Orders Pressed" },
@@ -120,6 +121,21 @@ export function HeroSection() {
                   </div>
                 </div>
               ))}
+              {/* Award badge */}
+              <a
+                href={companyInfo.award.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                <div className="flex items-center gap-1.5 font-[family-name:var(--font-heading)] text-lg font-bold text-amber-400 sm:text-2xl md:text-3xl">
+                  <Trophy className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+                  <span className="hidden sm:inline">&apos;{String(companyInfo.award.year).slice(-2)}</span>
+                </div>
+                <div className="font-[family-name:var(--font-data)] text-[9px] uppercase tracking-wider text-amber-400/70 sm:text-[10px] sm:tracking-widest">
+                  Best in {companyInfo.award.region}
+                </div>
+              </a>
             </div>
           </div>
         </div>

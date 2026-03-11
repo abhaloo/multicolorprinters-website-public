@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
-import { Target, Heart, Lightbulb, Printer, Factory } from "lucide-react"
+import { Target, Heart, Lightbulb, Printer, Factory, Award } from "lucide-react"
+import Image from "next/image"
+
 import { PageHero } from "@/components/page-hero"
 import { SectionHeader } from "@/components/section-header"
 import { CTASection } from "@/components/cta-section"
@@ -88,7 +90,10 @@ export default function AboutPage() {
                     Our commitment to excellence has driven us to invest in world-class
                     equipment — from the HP Indigo 5500 digital press to the Heidelberg
                     SpeedMaster offset press — ensuring that every project we handle
-                    meets the highest international standards.
+                    meets the highest international standards. In 2022, this commitment
+                    was recognized internationally when we were named{" "}
+                    <strong className="text-foreground">Best Commercial Print &amp; Design Company in Tanzania</strong>{" "}
+                    by Acquisition International&apos;s Business Excellence Awards.
                   </p>
                 </div>
               </div>
@@ -96,21 +101,65 @@ export default function AboutPage() {
 
             {/* Stats Grid */}
             <AnimateIn variant="fade-left" delay={150}>
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-xl border border-border bg-card p-6 text-center"
-                  >
-                    <CountUp
-                      value={stat.value}
-                      className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary"
-                    />
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {stat.label}
-                    </p>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  {stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-xl border border-border bg-card p-6 text-center"
+                    >
+                      <CountUp
+                        value={stat.value}
+                        className="font-[family-name:var(--font-heading)] text-3xl font-bold text-primary"
+                      />
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Award Highlight */}
+                <a
+                  href={companyInfo.award.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block rounded-xl bg-secondary p-5 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg border-2 border-white/20">
+                      <Image
+                        src={companyInfo.award.image}
+                        alt={`${companyInfo.award.title} — ${companyInfo.award.event}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <Award className="h-4 w-4 flex-shrink-0 text-amber-400" />
+                        <p className="font-[family-name:var(--font-data)] text-[11px] font-semibold uppercase tracking-wider text-amber-400">
+                          Award Winner
+                        </p>
+                      </div>
+                      <p className="mt-1 font-[family-name:var(--font-heading)] text-sm font-bold leading-snug text-white">
+                        {companyInfo.award.title} — {companyInfo.award.region}
+                      </p>
+                      <p className="mt-0.5 text-xs text-white/60">
+                        {companyInfo.award.event} · {companyInfo.award.organization}
+                      </p>
+                    </div>
+                    <svg
+                      className="h-4 w-4 flex-shrink-0 text-white/40 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-white/70"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                ))}
+                </a>
               </div>
             </AnimateIn>
           </div>

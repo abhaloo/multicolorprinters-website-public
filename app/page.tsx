@@ -1,6 +1,7 @@
 import { HeroSection } from "@/components/hero-section"
 import { ServicesStrip } from "@/components/services-strip"
 import { ClientsStrip } from "@/components/clients-strip"
+import { AwardShowcase } from "@/components/award-showcase"
 import { FeaturesSection } from "@/components/features-section"
 import { PhilosophySection } from "@/components/philosophy-section"
 import { ProtocolSection } from "@/components/protocol-section"
@@ -13,6 +14,7 @@ export default function Home() {
       <HeroSection />
       <ServicesStrip />
       <ClientsStrip />
+      <AwardShowcase />
       <FeaturesSection />
       <PhilosophySection />
       <ProtocolSection />

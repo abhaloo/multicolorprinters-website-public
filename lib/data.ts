@@ -8,12 +8,22 @@ export const companyInfo = {
   social: {
     instagram: "https://www.instagram.com/multicolorprintersltd",
     facebook: "https://www.facebook.com/multicolorprinters",
+    linkedin: "https://www.linkedin.com/company/multicolor-printers-ltd",
   },
   stats: {
     yearsExperience: `${new Date().getFullYear() - 1995}+`,
     projectsDelivered: "30,000+",
     businessesServed: "700+",
     satisfaction: "99%",
+  },
+  award: {
+    title: "Best Commercial Print & Design Company",
+    region: "Tanzania",
+    event: "Business Excellence Awards 2022",
+    organization: "Acquisition International",
+    image: "/images/award-business-excellence-2022.webp",
+    link: "https://www.acquisition-international.com/issues/business-excellence-awards-2022/30/",
+    year: 2022,
   },
 }
 

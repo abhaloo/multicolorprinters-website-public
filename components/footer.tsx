@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
 import { companyInfo, navLinks, servicesList } from "@/lib/data"
-import { InstagramIcon, FacebookIcon } from "@/components/social-icons"
+import { InstagramIcon, FacebookIcon, LinkedInIcon } from "@/components/social-icons"
 
 export function Footer() {
   return (
@@ -39,6 +39,14 @@ export function Footer() {
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-primary"
               >
                 <FacebookIcon className="h-4 w-4" />
+              </a>
+              <a
+                href={companyInfo.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-primary"
+              >
+                <LinkedInIcon className="h-4 w-4" />
               </a>
             </div>
           </div>
