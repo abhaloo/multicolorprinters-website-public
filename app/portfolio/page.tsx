@@ -5,9 +5,10 @@ import { CTASection } from "@/components/cta-section"
 import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
-  title: "Our Portfolio | Multi Color Printers",
+  title: "Our Portfolio",
   description:
-    "Browse our portfolio of commercial printing projects — digital prints, offset work, graphic design, and packaging solutions.",
+    "Browse our portfolio of commercial printing projects in Zanzibar — digital prints, offset work, graphic design, and packaging solutions.",
+  alternates: { canonical: "/portfolio" },
 }
 
 export default function PortfolioPage() {

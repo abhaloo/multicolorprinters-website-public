@@ -7,9 +7,10 @@ import { servicesList } from "@/lib/data"
 import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
-  title: "Our Services | Multi Color Printers",
+  title: "Printing Services in Zanzibar",
   description:
-    "Complete print solutions: graphic design, digital printing with HP Indigo 5500, offset printing with Heidelberg SpeedMaster, and packaging.",
+    "Complete print solutions in Zanzibar: graphic design, digital printing with HP Indigo 5500, offset printing with Heidelberg SpeedMaster, and packaging.",
+  alternates: { canonical: "/services" },
 }
 
 const services = [

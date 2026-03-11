@@ -8,9 +8,10 @@ import { Toaster } from "sonner"
 import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
-  title: "Contact Us | Multi Color Printers",
+  title: "Contact Us",
   description:
-    "Get in touch with Multi Color Printers for a free quote. Visit us in Zanzibar or reach out by phone, email, or our contact form.",
+    "Get in touch with Multi Color Printers for a free quote. Visit us in Mtoni, Zanzibar or reach out by phone, email, or WhatsApp.",
+  alternates: { canonical: "/contact" },
 }
 
 const contactCards = [

@@ -10,9 +10,10 @@ import { CountUp } from "@/components/count-up"
 import { AnimateIn } from "@/components/animate-in"
 
 export const metadata: Metadata = {
-  title: "About Us | Multi Color Printers",
+  title: "About Us",
   description:
     `Learn about Multi Color Printers — Zanzibar's trusted print partner with ${companyInfo.stats.yearsExperience} years of experience and industry-leading equipment.`,
+  alternates: { canonical: "/about" },
 }
 
 const stats = [
