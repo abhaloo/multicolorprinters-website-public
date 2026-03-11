@@ -11,6 +11,7 @@ type Project = ImageProject | GradientProject
 const projects: Project[] = [
   { title: "Dnata Window Wrap", category: "Design", image: "/images/portfolio/dnata-window-wrap.webp" },
   { title: "ZNZ Boutique Menu", category: "Digital", image: "/images/portfolio/znz-boutique-single-sheet-menu.webp" },
+  { title: "Custom Diaries 2025", category: "Offset", image: "/images/portfolio/diaries.webp" },
   { title: "Tourism Brochure Series", category: "Digital", gradient: "from-secondary to-accent" },
   { title: "Annual Report 2024", category: "Offset", gradient: "from-primary to-[#F25764]" },
   { title: "Spice Brand Identity", category: "Design", gradient: "from-accent to-secondary" },
