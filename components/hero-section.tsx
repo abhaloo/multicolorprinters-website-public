@@ -84,7 +84,7 @@ export function HeroSection() {
           </p>
 
           {/* CTAs */}
-          <div className="hero-anim mt-8 flex flex-col gap-4 opacity-0 sm:flex-row sm:items-center">
+          <div className="hero-anim mt-8 flex flex-row flex-wrap items-center gap-4 opacity-0">
             <Link
               href="/contact"
               className="btn-magnetic inline-flex items-center justify-center rounded-full bg-[#F21D2F] px-8 py-4 text-sm font-semibold text-white shadow-[0_4px_24px_rgba(242,29,47,0.35)] w-fit"
