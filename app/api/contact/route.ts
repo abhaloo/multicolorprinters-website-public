@@ -1,9 +1,8 @@
-export const runtime = "edge"
-
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 
 // Rate limiting: IP -> array of timestamps
+// Uses Node.js runtime (default) so the Map persists across warm invocations
 const submissions = new Map<string, number[]>()
 const RATE_LIMIT = 3
 const RATE_WINDOW = 15 * 60 * 1000 // 15 minutes
@@ -17,6 +16,14 @@ function isRateLimited(ip: string): boolean {
   recent.push(now)
   submissions.set(ip, recent)
   return false
+}
+
+function escapeHtml(str: string): string {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
 }
 
 export async function POST(request: NextRequest) {
@@ -74,15 +81,15 @@ export async function POST(request: NextRequest) {
 
     // Build email HTML
     const rows = [
-      ["Name", name],
-      ["Email", email],
-      ["Phone", phone || "—"],
-      ["Service", service],
-      ["Product Description", description || "—"],
-      ["Quantity", quantity || "—"],
-      ["Paper Size", paperSize || "—"],
-      ["Turnaround", turnaround || "—"],
-      ["Message", message],
+      ["Name", escapeHtml(name)],
+      ["Email", escapeHtml(email)],
+      ["Phone", escapeHtml(phone || "—")],
+      ["Service", escapeHtml(service)],
+      ["Product Description", escapeHtml(description || "—")],
+      ["Quantity", escapeHtml(quantity || "—")],
+      ["Paper Size", escapeHtml(paperSize || "—")],
+      ["Turnaround", escapeHtml(turnaround || "—")],
+      ["Message", escapeHtml(message)],
     ]
 
     const tableRows = rows
@@ -116,7 +123,7 @@ export async function POST(request: NextRequest) {
       from: "Multi Color Printers <quotes@multicolorprinters.com>",
       replyTo: email,
       to: ["info@multicolorprinters.com"],
-      subject: `Quote Request: ${service} — ${name}`,
+      subject: `Quote Request: ${escapeHtml(service)} — ${escapeHtml(name)}`,
       html,
     })
 

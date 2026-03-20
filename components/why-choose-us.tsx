@@ -10,8 +10,8 @@ const values = [
   },
   {
     icon: Cog,
-    title: "Industry Equipment",
-    description: "HP Indigo 5500 & Heidelberg SpeedMaster for unmatched print precision.",
+    title: "Professional-Grade Output",
+    description: "State-of-the-art digital and offset presses for unmatched print precision.",
   },
   {
     icon: Clock,

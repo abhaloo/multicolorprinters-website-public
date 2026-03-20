@@ -7,8 +7,13 @@ import { PhilosophySection } from "@/components/philosophy-section"
 import { ProtocolSection } from "@/components/protocol-section"
 import { Testimonials } from "@/components/testimonials"
 import { CTASection } from "@/components/cta-section"
+import { fetchGoogleReviews } from "@/lib/google-reviews"
 
-export default function Home() {
+export const revalidate = 86400
+
+export default async function Home() {
+  const googleReviews = await fetchGoogleReviews()
+
   return (
     <main style={{ isolation: "isolate" }}>
       <HeroSection />
@@ -18,7 +23,7 @@ export default function Home() {
       <FeaturesSection />
       <PhilosophySection />
       <ProtocolSection />
-      <Testimonials />
+      <Testimonials googleReviews={googleReviews} />
       <CTASection />
     </main>
   )

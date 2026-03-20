@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { Send, ChevronDown, Check } from "lucide-react"
+import { useSearchParams } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { SuccessCelebration } from "@/components/success-celebration"
 
@@ -15,8 +16,11 @@ const serviceOptions = [
   "Business Cards",
   "Brochures & Flyers",
   "Large Format Printing",
-  "T-Shirt Printing",
-  "Stickers & Labels",
+  "Garment & T-Shirt Printing",
+  "Label & Sticker Printing",
+  "UV Printing",
+  "Embroidery",
+  "Screen Printing",
   "Other",
 ]
 
@@ -104,10 +108,25 @@ export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [fieldState, setFieldState] = useState<Record<string, FieldState>>(initialFieldState)
   const loadedAt = useRef<number>(0)
+  const serviceRef = useRef<HTMLSelectElement>(null)
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     loadedAt.current = Date.now()
   }, [])
+
+  useEffect(() => {
+    const serviceParam = searchParams.get("service")
+    if (serviceParam) {
+      const match = serviceOptions.find(
+        (opt) => opt.toLowerCase() === serviceParam.toLowerCase()
+      )
+      if (match && serviceRef.current) {
+        serviceRef.current.value = match
+        setFieldState((prev) => ({ ...prev, service: { touched: true, valid: true } }))
+      }
+    }
+  }, [searchParams])
 
   const handleFieldBlur = useCallback((e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -222,6 +241,10 @@ export function ContactForm() {
   const baseInputClasses = "w-full rounded-lg border bg-background px-4 py-2.5 text-sm text-foreground outline-none transition-colors"
 
   return (
+    <div>
+      <p className="mb-6 text-sm text-muted-foreground">
+        Free, no-obligation quotes — typically responded within 24 hours
+      </p>
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       {/* Honeypot */}
       <input
@@ -307,6 +330,7 @@ export function ContactForm() {
           </label>
           <div className="relative">
             <select
+              ref={serviceRef}
               id="service"
               name="service"
               required
@@ -474,5 +498,6 @@ export function ContactForm() {
         )}
       </Button>
     </form>
+    </div>
   )
 }

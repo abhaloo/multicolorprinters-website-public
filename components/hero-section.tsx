@@ -1,6 +1,6 @@
 "use client"
 
-import { useLayoutEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import gsap from "gsap"
 import { Trophy } from "lucide-react"
@@ -9,7 +9,7 @@ import { companyInfo } from "@/lib/data"
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ".hero-anim",

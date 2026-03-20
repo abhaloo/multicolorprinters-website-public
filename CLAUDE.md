@@ -31,7 +31,7 @@ Multi Color Printers website — a commercial printing company based in Zanzibar
 
 ## Design System
 
-- **Brand colors**: Primary red `#F21D2F`, secondary navy `#2E338C`, accent lavender `#9395BF`, background `#F2F2F2`
+- **Brand colors**: Primary red `#F21D2F`, secondary navy `#1E2254`, accent lavender `#9395BF`, background `#F5F0EB`
 - **Fonts**: Inter (body, `--font-inter`), Space Grotesk (headings, `--font-space-grotesk`)
 - CSS variables defined in `app/globals.css` with light/dark variants
 - Use `font-heading` for headings, default `font-sans` for body text

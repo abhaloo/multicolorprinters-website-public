@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Target, Heart, Lightbulb, Printer, Factory, Award } from "lucide-react"
+import { Target, Heart, Lightbulb, Award } from "lucide-react"
 import Image from "next/image"
 
 import { PageHero } from "@/components/page-hero"
@@ -12,7 +12,7 @@ import { AnimateIn } from "@/components/animate-in"
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    `Learn about Multi Color Printers — Zanzibar's trusted print partner with ${companyInfo.stats.yearsExperience} years of experience and industry-leading equipment.`,
+    `Learn about Multi Color Printers — Zanzibar's trusted print partner with ${companyInfo.stats.yearsExperience} years of experience and award-winning quality.`,
   alternates: { canonical: "/about" },
 }
 
@@ -41,24 +41,6 @@ const pillars = [
   },
 ]
 
-const equipment = [
-  {
-    icon: Printer,
-    name: "HP Indigo 5500",
-    type: "Digital Press",
-    description:
-      "Industry-leading digital press delivering offset-quality prints with the flexibility of digital. Perfect for variable data, short runs, and specialty substrates.",
-    features: ["7-color printing", "Variable data", "Specialty substrates", "Offset-matching quality"],
-  },
-  {
-    icon: Factory,
-    name: "Heidelberg SpeedMaster",
-    type: "Offset Press",
-    description:
-      "The gold standard in commercial offset printing. Delivers consistent, high-volume output with exceptional color fidelity and finishing options.",
-    features: ["High-volume capacity", "Consistent color", "Varnish coating", "Multiple paper weights"],
-  },
-]
 
 export default function AboutPage() {
   return (
@@ -89,8 +71,7 @@ export default function AboutPage() {
                   </p>
                   <p>
                     Our commitment to excellence has driven us to invest in world-class
-                    equipment — from the HP Indigo 5500 digital press to the Heidelberg
-                    SpeedMaster offset press — ensuring that every project we handle
+                    printing technology — from advanced digital presses to commercial offset systems — ensuring that every project we handle
                     meets the highest international standards. In 2022, this commitment
                     was recognized internationally when we were named{" "}
                     <strong className="text-foreground">Best Commercial Print &amp; Design Company in Tanzania</strong>{" "}
@@ -192,51 +173,6 @@ export default function AboutPage() {
                     {pillar.description}
                   </p>
                 </div>
-              </AnimateIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Equipment */}
-      <section className="bg-background py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <AnimateIn>
-            <SectionHeader
-              label="Our equipment"
-              heading="Industry-Leading Technology"
-            />
-          </AnimateIn>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {equipment.map((item, index) => (
-              <AnimateIn key={item.name} variant="fade-up" delay={index * 150}>
-              <div
-                className="rounded-2xl border border-border bg-card p-8"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-secondary/10">
-                  <item.icon className="h-6 w-6 text-secondary" />
-                </div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  {item.type}
-                </p>
-                <h3 className="font-[family-name:var(--font-heading)] mt-1 text-xl font-bold text-foreground">
-                  {item.name}
-                </h3>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
-                <ul className="mt-4 grid grid-cols-2 gap-2">
-                  {item.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center gap-2 text-sm text-foreground"
-                    >
-                      <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
               </AnimateIn>
             ))}
           </div>

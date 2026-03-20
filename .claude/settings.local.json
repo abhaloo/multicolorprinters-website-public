@@ -14,7 +14,12 @@
       "Bash(find \"/c/Users/Adeel/Desktop/MCP Connect/multicolorprinters-website\" -maxdepth 3 -name \"*logo*\" -type f 2>/dev/null | grep -v node_modules)",
       "Bash(cd \"C:\\\\Users\\\\Adeel\\\\Desktop\\\\MCP Connect\\\\multicolorprinters-website\" && npx next build 2>&1 | tail -20)",
       "Bash(cd \"/c/Users/Adeel/Desktop/MCP Connect/multicolorprinters-website\" && rm \"public/images/award-business-excellence-2022.jpeg\" && ls public/images/award*)",
-      "Bash(cd \"/c/Users/Adeel/Desktop/MCP Connect/multicolorprinters-website\" && npx sharp-cli -i \"public/images/portfolio work/diaries.jpeg\" -o \"public/images/portfolio/diaries.webp\" --format webp)"
+      "Bash(cd \"/c/Users/Adeel/Desktop/MCP Connect/multicolorprinters-website\" && npx sharp-cli -i \"public/images/portfolio work/diaries.jpeg\" -o \"public/images/portfolio/diaries.webp\" --format webp)",
+      "Bash(wc -l \"C:\\\\Users\\\\Adeel\\\\Downloads\\\\Mind Space\\\\Website building\\\\examples websites\\\\printpluszanzibar.com_\\\\printpluszanzibar.com\"/*.html)",
+      "Bash(for file:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/Adeel/Desktop/MCP Connect/multicolorprinters-website/$file/**)",
+      "Bash(done)"
     ]
   }
 }

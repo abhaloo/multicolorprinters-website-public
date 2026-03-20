@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/next'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { FloatingCTA } from '@/components/floating-cta'
+import { CookieConsent } from '@/components/cookie-consent'
+import { SiteShell } from '@/components/site-shell'
 import { companyInfo, servicesList } from '@/lib/data'
 import './globals.css'
 
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Multi Color Printers",
   },
   description:
-    "Zanzibar's leading commercial printing company since 1995. Business cards, brochures, banners, packaging & more. Award-winning quality with HP Indigo & Heidelberg presses.",
+    "Zanzibar's leading commercial printing company since 1995. Award-winning quality and precision printing for business cards, brochures, banners, packaging & more.",
   keywords: [
     "printing Zanzibar",
     "commercial printing Tanzania",
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
     siteName: "Multi Color Printers",
     title: "Multi Color Printers | Commercial Printing in Zanzibar, Tanzania",
     description:
-      "Zanzibar's leading commercial printing company since 1995. Award-winning quality with HP Indigo & Heidelberg presses.",
+      "Zanzibar's leading commercial printing company since 1995. Award-winning quality and precision printing for business cards, brochures, banners, packaging & more.",
     images: [
       {
         url: "/images/hero-printing.webp",
@@ -67,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Multi Color Printers | Commercial Printing in Zanzibar",
     description:
-      "Zanzibar's leading commercial printing company since 1995. Award-winning quality with HP Indigo & Heidelberg presses.",
+      "Zanzibar's leading commercial printing company since 1995. Award-winning quality and precision printing for business cards, brochures, banners, packaging & more.",
     images: ["/images/hero-printing.webp"],
   },
   alternates: {
@@ -144,10 +146,15 @@ export default function RootLayout({
         />
       </head>
       <body className={`${_inter.variable} ${_spaceGrotesk.variable} ${_playfair.variable} ${_ibmPlexMono.variable} font-sans antialiased`}>
-        <Navbar />
+        <SiteShell>
+          <Navbar />
+        </SiteShell>
         {children}
-        <Footer />
-        <FloatingCTA />
+        <SiteShell>
+          <Footer />
+          <FloatingCTA />
+          <CookieConsent />
+        </SiteShell>
         <Analytics />
       </body>
     </html>

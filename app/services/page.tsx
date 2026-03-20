@@ -1,15 +1,18 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { Palette, Printer, Factory, Package } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
 import { CTASection } from "@/components/cta-section"
 import { servicesList } from "@/lib/data"
+import { serviceDetails } from "@/lib/service-details"
 import { AnimateIn } from "@/components/animate-in"
+import { SectionHeader } from "@/components/section-header"
 
 export const metadata: Metadata = {
   title: "Printing Services in Zanzibar",
   description:
-    "Complete print solutions in Zanzibar: graphic design, digital printing with HP Indigo 5500, offset printing with Heidelberg SpeedMaster, and packaging.",
+    "Complete print solutions in Zanzibar: graphic design, digital printing, offset printing, packaging, large format, garment printing and more.",
   alternates: { canonical: "/services" },
 }
 
@@ -17,6 +20,7 @@ const services = [
   {
     icon: Palette,
     title: "Graphic Design",
+    slug: "graphic-design",
     description:
       "Our in-house design team brings your ideas to life. From brand identity to marketing materials, we offer professional designing, editing, typesetting, scanning, and image manipulation services to ensure your prints are pixel-perfect.",
     features: ["Brand Identity Design", "Layout & Typesetting", "Image Editing & Retouching", "Scanning & Digitization", "Pre-Press Preparation"],
@@ -26,24 +30,27 @@ const services = [
   {
     icon: Printer,
     title: "Digital Printing",
+    slug: "digital-printing",
     description:
-      "Powered by the HP Indigo 5500 digital press, we deliver stunning full-color prints with variable data printing capabilities. Ideal for short runs, personalized marketing, and fast turnaround projects without compromising on quality.",
-    features: ["HP Indigo 5500 Technology", "Variable Data Printing", "Short Run Specialists", "Same-Day Turnaround Available", "Pantone Color Matching"],
+      "Our industry-leading digital press delivers stunning full-color prints with variable data printing capabilities. Ideal for short runs, personalized marketing, and fast turnaround projects without compromising on quality.",
+    features: ["Offset-Quality Output", "Variable Data Printing", "Short Run Specialists", "Same-Day Turnaround Available", "Pantone Color Matching"],
     image: "/images/hp_indigo_machine.webp",
-    alt: "HP Indigo 5500 digital printing press at Multi Color Printers",
+    alt: "Digital printing press producing full-color marketing materials",
   },
   {
     icon: Factory,
     title: "Offset Printing",
+    slug: "offset-printing",
     description:
-      "Our Heidelberg SpeedMaster press handles high-volume commercial printing with exceptional consistency. Perfect for large runs of brochures, magazines, books, and marketing collateral with options for varnish coating and special finishes.",
-    features: ["Heidelberg SpeedMaster Press", "High-Volume Production", "Varnish & UV Coating", "Spot Color Printing", "Consistent Color Reproduction"],
+      "Our commercial offset press handles high-volume commercial printing with exceptional consistency. Perfect for large runs of brochures, magazines, books, and marketing collateral with options for varnish coating and special finishes.",
+    features: ["Exceptional Color Fidelity", "High-Volume Production", "Varnish & UV Coating", "Spot Color Printing", "Consistent Color Reproduction"],
     image: "/images/offset_machine.webp",
-    alt: "Heidelberg SpeedMaster offset printing press in operation",
+    alt: "Commercial offset printing press in production",
   },
   {
     icon: Package,
     title: "Packaging Solutions",
+    slug: "packaging",
     description:
       "End-to-end packaging services from structural design to final production. We create eye-catching product packaging, display boxes, and custom containers that protect your products and elevate your brand presence on the shelf.",
     features: ["Custom Box Design", "Product Packaging", "Display & POS Materials", "Die-Cutting & Folding", "Embossing & Foil Stamping"],
@@ -110,12 +117,47 @@ export default function ServicesPage() {
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="mt-6 inline-flex items-center text-sm font-semibold text-primary hover:underline"
+                >
+                  Learn More →
+                </Link>
               </div>
               </AnimateIn>
             </div>
           </div>
         </section>
       ))}
+
+      {/* More Services */}
+      <section className="py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <AnimateIn>
+            <SectionHeader label="Explore more" heading="Additional Services" />
+          </AnimateIn>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {serviceDetails
+              .filter((s) => ["large-format-printing", "garment-printing", "label-sticker-printing", "uv-printing", "embroidery", "screen-printing"].includes(s.slug))
+              .map((s, i) => (
+                <AnimateIn key={s.slug} variant="fade-up" delay={i * 100}>
+                  <Link
+                    href={`/services/${s.slug}`}
+                    className="group block rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-foreground group-hover:text-primary">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{s.tagline}</p>
+                    <span className="mt-4 inline-flex text-sm font-semibold text-primary">
+                      Learn More →
+                    </span>
+                  </Link>
+                </AnimateIn>
+              ))}
+          </div>
+        </div>
+      </section>
 
       {/* Products Grid */}
       <section className="bg-background py-20">

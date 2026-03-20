@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import { MapPin, Phone, Mail } from "lucide-react"
 import { PageHero } from "@/components/page-hero"
@@ -57,7 +58,9 @@ export default function ContactPage() {
                   Tell us about your project and we&apos;ll get back to you within 24 hours with a quote.
                 </p>
                 <div className="mt-6">
-                  <ContactForm />
+                  <Suspense fallback={<div className="h-96 animate-pulse rounded-2xl bg-muted" />}>
+                    <ContactForm />
+                  </Suspense>
                 </div>
               </div>
             </AnimateIn>

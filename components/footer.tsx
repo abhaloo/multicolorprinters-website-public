@@ -21,7 +21,7 @@ export function Footer() {
               />
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
-              Zanzibar&apos;s trusted commercial printing partner. Delivering exceptional print quality with over 25 years of industry experience.
+              Zanzibar&apos;s trusted commercial printing partner. Delivering exceptional print quality with over {new Date().getFullYear() - 1995} years of industry experience.
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -67,6 +67,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/careers"
+                  className="text-sm text-[#9395BF] transition-colors hover:text-white"
+                >
+                  Careers
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -125,8 +133,12 @@ export function Footer() {
       {/* Copyright & Status Bar */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-5 sm:flex-row">
-          <p className="text-xs text-gray-500">
-            &copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
+          <p className="flex items-center gap-2 text-xs text-gray-500">
+            <span>&copy; {new Date().getFullYear()} {companyInfo.name}. All rights reserved.</span>
+            <span className="text-[#9395BF]">&middot;</span>
+            <Link href="/privacy" className="text-sm text-[#9395BF] hover:text-white">
+              Privacy Policy
+            </Link>
           </p>
           {/* System Operational status indicator */}
           <div className="flex items-center gap-2" aria-label="System status: operational">

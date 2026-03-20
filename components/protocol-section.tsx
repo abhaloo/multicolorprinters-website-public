@@ -420,7 +420,7 @@ const steps = [
     number: "02",
     title: "Press & Precision",
     description:
-      "HP Indigo 5500, Heidelberg SpeedMaster and more top-of-the-line equipment guided by master hands. Every sheet inspected. Every color matched to the approved proof.",
+      "Industry-leading presses and precision equipment guided by master hands. Every sheet inspected. Every color matched to the approved proof.",
     bg: "#111318",
     Animation: PrintingPage,
   },
